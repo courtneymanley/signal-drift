@@ -1,137 +1,163 @@
 /*
-  Renders `entries` (from entries.js) into #log, grouped by week.
+  Renders `chains` and `isolatedCaptures` (from entries.js) into #log.
   You shouldn't need to edit this file — it just draws whatever is in
   entries.js. If you want to change how things look, that's style.css.
 */
 
 (function () {
-  const DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const RELATIONSHIP_LABELS = {
+    revised: "Revised",
+    contested: "Contested",
+    both: "Revised + Contested"
+  };
 
-  function isoToLocalDate(iso) {
+  function formatDate(iso) {
     const [y, m, d] = iso.split("-").map(Number);
-    return new Date(y, m - 1, d);
+    return new Date(y, m - 1, d).toLocaleDateString(undefined, { month: "short", day: "numeric" });
   }
 
-  function mondayOf(date) {
-    const d = new Date(date);
-    const day = (d.getDay() + 6) % 7; // 0 = Monday
-    d.setDate(d.getDate() - day);
-    d.setHours(0, 0, 0, 0);
-    return d;
-  }
-
-  function formatDate(date) {
-    return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
-  }
-
-  function buildDayTracker(weekEntries, weekNumber) {
-    // Figure out which of the 7 days in this week's Mon–Sun span have a capture.
-    const datesWithCaptures = new Set(weekEntries.map(e => e.date));
-    const anyDate = isoToLocalDate(weekEntries[0].date);
-    const monday = mondayOf(anyDate);
-
-    const tracker = document.createElement("div");
-    tracker.className = "day-tracker";
-    tracker.setAttribute("aria-label", "Which days this week have a capture");
-
-    for (let i = 0; i < 7; i++) {
-      const day = new Date(monday);
-      day.setDate(monday.getDate() + i);
-      const iso = day.toISOString().slice(0, 10);
-      const hit = datesWithCaptures.has(iso);
-
-      const dot = document.createElement("span");
-      dot.className = "day-dot" + (hit ? " day-dot-filled" : " day-dot-gap");
-      dot.title = `${DAY_LABELS[i]} ${formatDate(day)}${hit ? "" : " — no capture (gap)"}`;
-      tracker.appendChild(dot);
-    }
-    return tracker;
-  }
-
-  function buildEntryCard(entry) {
+  function buildCaptureCard(item) {
     const card = document.createElement("figure");
-    card.className = `entry placement-${entry.placement}`;
+    card.className = "capture";
 
     const img = document.createElement("img");
-    img.src = entry.image;
-    img.alt = entry.alt || "";
+    img.src = item.image;
+    img.alt = item.alt || "";
     img.loading = "lazy";
 
     const cap = document.createElement("figcaption");
-    const tag = document.createElement("span");
-    tag.className = `tag tag-${entry.tag}`;
-    tag.textContent = entry.tag === "spike" ? "Spike Event" : "Thin Coverage";
 
     const dateEl = document.createElement("span");
-    dateEl.className = "entry-date";
-    dateEl.textContent = formatDate(isoToLocalDate(entry.date));
+    dateEl.className = "capture-date";
+    dateEl.textContent = formatDate(item.date);
 
     const text = document.createElement("p");
-    text.className = "entry-text";
-    text.textContent = entry.caption;
+    text.className = "capture-text";
+    text.textContent = item.caption;
 
-    const meta = document.createElement("div");
-    meta.className = "entry-meta";
-    meta.appendChild(tag);
-    meta.appendChild(dateEl);
-
-    cap.appendChild(meta);
+    cap.appendChild(dateEl);
     cap.appendChild(text);
+    card.appendChild(img);
+    card.appendChild(cap);
+    return card;
+  }
 
-    if (entry.placement === "overlay") {
-      const wrap = document.createElement("div");
-      wrap.className = "overlay-wrap";
-      wrap.appendChild(img);
-      wrap.appendChild(cap);
-      card.appendChild(wrap);
+  function buildChangeConnector(changeText) {
+    const wrap = document.createElement("div");
+    wrap.className = "change-connector";
+    const arrow = document.createElement("span");
+    arrow.className = "change-arrow";
+    arrow.setAttribute("aria-hidden", "true");
+    arrow.textContent = "↓";
+    const text = document.createElement("p");
+    text.className = "change-text";
+    text.textContent = changeText;
+    wrap.appendChild(arrow);
+    wrap.appendChild(text);
+    return wrap;
+  }
+
+  function buildChainSection(chain) {
+    const section = document.createElement("section");
+    section.className = "chain";
+
+    const header = document.createElement("div");
+    header.className = "chain-header";
+
+    const tag = document.createElement("span");
+    tag.className = `chain-tag chain-tag-${chain.relationship}`;
+    tag.textContent = RELATIONSHIP_LABELS[chain.relationship] || chain.relationship;
+    header.appendChild(tag);
+    section.appendChild(header);
+
+    const isFork = chain.relationship === "contested" || chain.relationship === "both";
+
+    if (isFork) {
+      if (chain.divergencePoint) {
+        const div = document.createElement("p");
+        div.className = "chain-divergence";
+        div.textContent = `Diverges on: ${chain.divergencePoint}`;
+        section.appendChild(div);
+      }
+
+      const fork = document.createElement("div");
+      fork.className = "chain-fork";
+      chain.items.forEach(item => {
+        const branch = document.createElement("div");
+        branch.className = "chain-branch";
+        branch.appendChild(buildCaptureCard(item));
+        if (item.change) {
+          const note = document.createElement("p");
+          note.className = "change-text branch-change-text";
+          note.textContent = item.change;
+          branch.appendChild(note);
+        }
+        fork.appendChild(branch);
+      });
+      section.appendChild(fork);
     } else {
-      card.appendChild(img);
-      card.appendChild(cap);
+      const sequence = document.createElement("div");
+      sequence.className = "chain-sequence";
+      chain.items.forEach((item, i) => {
+        if (i > 0 && item.change) {
+          sequence.appendChild(buildChangeConnector(item.change));
+        }
+        sequence.appendChild(buildCaptureCard(item));
+      });
+      section.appendChild(sequence);
     }
 
-    return card;
+    return section;
+  }
+
+  function buildIsolatedSection(items) {
+    const section = document.createElement("section");
+    section.className = "isolated-section";
+
+    const heading = document.createElement("h2");
+    heading.textContent = "Isolated captures";
+    const note = document.createElement("p");
+    note.className = "isolated-note";
+    note.textContent = "Logged, but no linked version has turned up yet.";
+    section.appendChild(heading);
+    section.appendChild(note);
+
+    const grid = document.createElement("div");
+    grid.className = "isolated-grid";
+    items.forEach(item => {
+      const card = buildCaptureCard(item);
+      card.classList.add("isolated-card");
+      grid.appendChild(card);
+    });
+    section.appendChild(grid);
+    return section;
+  }
+
+  function chainStartDate(chain) {
+    return chain.items.reduce((min, it) => (it.date < min ? it.date : min), chain.items[0].date);
   }
 
   function render() {
     const log = document.getElementById("log");
     log.innerHTML = "";
 
-    if (!entries || entries.length === 0) {
+    const hasChains = typeof chains !== "undefined" && chains.length > 0;
+    const hasIsolated = typeof isolatedCaptures !== "undefined" && isolatedCaptures.length > 0;
+
+    if (!hasChains && !hasIsolated) {
       log.innerHTML = "<p class='empty'>No captures yet.</p>";
       return;
     }
 
-    const byWeek = new Map();
-    entries.forEach(e => {
-      if (!byWeek.has(e.week)) byWeek.set(e.week, []);
-      byWeek.get(e.week).push(e);
-    });
+    if (hasChains) {
+      const sorted = chains.slice().sort((a, b) => chainStartDate(b).localeCompare(chainStartDate(a)));
+      sorted.forEach(chain => log.appendChild(buildChainSection(chain)));
+    }
 
-    const weeks = Array.from(byWeek.keys()).sort((a, b) => b - a); // newest week first
-
-    weeks.forEach(weekNum => {
-      const weekEntries = byWeek.get(weekNum).slice().sort((a, b) => a.date.localeCompare(b.date));
-
-      const section = document.createElement("section");
-      section.className = "week";
-
-      const heading = document.createElement("div");
-      heading.className = "week-heading";
-      const h2 = document.createElement("h2");
-      h2.textContent = weekNum === 0 ? "Examples" : `Week ${weekNum}`;
-      heading.appendChild(h2);
-      if (weekNum !== 0) {
-        heading.appendChild(buildDayTracker(weekEntries, weekNum));
-      }
-      section.appendChild(heading);
-
-      const grid = document.createElement("div");
-      grid.className = "week-grid";
-      weekEntries.forEach(e => grid.appendChild(buildEntryCard(e)));
-      section.appendChild(grid);
-
-      log.appendChild(section);
-    });
+    if (hasIsolated) {
+      const sorted = isolatedCaptures.slice().sort((a, b) => b.date.localeCompare(a.date));
+      log.appendChild(buildIsolatedSection(sorted));
+    }
   }
 
   render();

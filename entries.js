@@ -1,42 +1,125 @@
 /*
   ENTRIES — this is the only file you'll edit most weeks.
 
-  Every screenshot on the site is one object in this list. To add a new
-  capture: copy the object below, paste it into the list, and fill in
-  your own values. Order doesn't matter — the site sorts everything by
-  date automatically.
+  MOCKUP NOTE: the two chains and the isolated capture below are placeholder
+  content for reviewing the new site structure. The captions describe the
+  rabies/bat pattern and the measles/Secretary-of-Health pattern from the
+  vision statement in general terms, but they are NOT transcriptions of your
+  actual screenshots — swap in your real captures and real image files before
+  this goes live. Delete this note once real content is in.
 
-  FIELD GUIDE
-  id:        anything unique, e.g. "w1-03" (week 1, capture 3). Never reused.
-  week:      the week number of the semester (1, 2, 3...).
-  date:      the day you captured it, as "YYYY-MM-DD".
-  image:     the filename of your screenshot inside the images/ folder.
-  alt:       one plain sentence describing the image, for accessibility.
-  tag:       "spike" or "thin" — see your Capture Rule for which is which.
-  placement: where the caption sits relative to the screenshot.
-             one of: "above", "below", "beside", "overlay"
-  caption:   your annotation. This is the writing — take your time with it.
+  DATA MODEL (per the Signal Drift vision statement, Final)
+
+  The site's unit is no longer a single tagged screenshot. It's a
+  COMMUNICATION CHAIN: two or more captures about the same underlying fact,
+  plus the point(s) where the messaging visibly changed between them. A
+  capture that never connects to another gets logged as ISOLATED instead —
+  kept on file, but flagged as not (yet) part of a pattern.
+
+  This model deliberately does NOT label captures by where they came from
+  (no "national" / "hyperlocal" / etc. field). The site only tracks what
+  changed and, for contested chains, what the versions disagree about — not
+  which kind of source said it.
+
+  ---- CHAINS ----
+
+  Add new chains to the `chains` array below.
+
+  id:            unique, e.g. "c03". Never reused.
+  relationship:  "revised" | "contested" | "both"
+                   revised   — the story's shape changed through
+                               simplification, omission, or added/changed
+                               facts as it moved. Rendered as a sequence.
+                   contested — two (or more) versions disagree about which
+                               facts are true in the first place. Rendered
+                               as a fork from one shared point of divergence.
+                   both      — it's honestly some of each. Rendered as a fork,
+                               same as "contested."
+  divergencePoint: required for "contested" and "both" chains only. One
+                   sentence naming the shared fact or moment the versions
+                   disagree about. Leave null for "revised" chains.
+  items:         ordered list of captures in this chain. Each item:
+                   date:    "YYYY-MM-DD", the day you captured it.
+                   image:   filename inside images/.
+                   alt:     one plain sentence describing the image, for
+                            accessibility.
+                   caption: your annotation on this specific capture —
+                            what it says, how it frames things.
+                   change:  the point of change. For a "revised" chain,
+                            what shifted from the PREVIOUS item to this one
+                            (leave null on the first item — nothing to
+                            compare yet). For a "contested"/"both" chain,
+                            how THIS version diverges from divergencePoint
+                            (every item should have one, including the
+                            first, since they're being compared to the
+                            shared fact, not to each other in sequence).
+
+  ---- ISOLATED CAPTURES ----
+
+  Add to the `isolatedCaptures` array. Same fields as a chain item (id,
+  date, image, alt, caption), no `change` field — there's nothing yet to
+  compare it against. If a chain forms later, move it into `chains` and
+  delete it from here.
 */
 
-const entries = [
+const chains = [
   {
-    id: "w1-01",
-    week: 1,
-    date: "2026-08-24",
-    image: "images/W01_D01_01_MMH.PNG",
-    alt: "NBC News segment on postpartum psychosis, referencing the Commonwealth v. Lindsay Clancy trial.",
-    tag: "spike",
-    placement: "below",
-    caption: "NBC news covers postpartum psychosis and ties it back to the Commonwealth vs. Lindsay Clancy trial."
+    id: "c01",
+    relationship: "revised",
+    divergencePoint: null,
+    items: [
+      {
+        date: "2026-09-02",
+        image: "images/mock-a1.svg",
+        alt: "Placeholder — national outlet post reporting roughly 300 people exposed to rabies at a petting zoo.",
+        caption: "First capture: a national post reporting the exposure count and the source of the exposure.",
+        change: null
+      },
+      {
+        date: "2026-09-04",
+        image: "images/mock-a2.svg",
+        alt: "Placeholder — official health alert about the same exposure.",
+        caption: "An official alert on the same event, addressed to people who may have been exposed.",
+        change: "Point of change: the petting-zoo detail drops out; the alert is framed around exposure and next steps rather than the original event."
+      },
+      {
+        date: "2026-09-06",
+        image: "images/mock-a3.svg",
+        alt: "Placeholder — local community post about a related, nearby case.",
+        caption: "A local post about a related case turning up nearby, written for a neighborhood audience.",
+        change: "Point of change: the original exposure count and event are gone entirely; the post now reads as a new, standalone local concern rather than a continuation of the first story."
+      }
+    ]
   },
   {
-    id: "w1-02",
-    week: 1,
-    date: "2026-08-24",
-    image: "images/W01_D01_01_PHARM.PNG",
-    alt: "Coverage of an unregulated compounded GLP-1 drug sold outside clinical trials, with warnings from doctors about unknown purity and dosing.",
-    tag: "thin",
-    placement: "below",
-    caption: "A new type of Ozempic has becoming popular, but doctors are warning that it is unregulated and is currently only available in clinical trials, but people are buying it on the black market with no true idea about efficacy, purity, or dosing."
+    id: "c02",
+    relationship: "contested",
+    divergencePoint: "Whether the reported measles deaths reflect a genuine active outbreak worth public concern.",
+    items: [
+      {
+        date: "2026-09-08",
+        image: "images/mock-b1.svg",
+        alt: "Placeholder — outlet coverage reporting confirmed measles deaths.",
+        caption: "Coverage reporting confirmed deaths tied to the outbreak, presented as straightforward factual reporting.",
+        change: "Diverges by treating the death count itself as the newsworthy fact, without commentary on how the story is being told."
+      },
+      {
+        date: "2026-09-09",
+        image: "images/mock-b2.svg",
+        alt: "Placeholder — statement from a health official calling the coverage fearmongering.",
+        caption: "A health official's public statement calling the same coverage fearmongering.",
+        change: "Diverges by disputing the framing of the first version rather than the death count itself — an opinion-based counter-narrative layered on top of the factual reporting."
+      }
+    ]
+  }
+];
+
+const isolatedCaptures = [
+  {
+    id: "i01",
+    date: "2026-09-10",
+    image: "images/mock-isolated.svg",
+    alt: "Placeholder — a single health-related capture with no linked version yet.",
+    caption: "A single capture that hasn't turned up a linked version at another point yet. Kept on file in case one surfaces later."
   }
 ];
