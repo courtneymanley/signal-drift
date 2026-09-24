@@ -1,136 +1,286 @@
 /*
-  Renders `chains` and `isolatedCaptures` (from entries.js) into #log.
-  You shouldn't need to edit this file — it just draws whatever is in
-  entries.js. If you want to change how things look, that's style.css.
+  Renders everything in entries.js into #log. Each capture's annotation form
+  follows its status under the Capture Rule (see method.html):
+    chains -> marginalia, isolated clusters -> grid, single isolated -> words
+    on the image, detail-level claims -> crop and enlarge, one sequence with
+    no words, and out-of-scope captures -> the plain caption below.
+  Every capture also gets a separate, collapsible record.
 */
 
 (function () {
-  const RELATIONSHIP_LABELS = {
-    revised: "Revised",
-    contested: "Contested",
-    both: "Revised + Contested"
-  };
+  const RELATIONSHIP_LABELS = { revised: "Revised", contested: "Contested", both: "Revised + Contested" };
+
+  function el(tag, cls, text) {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
 
   function formatDate(iso) {
     const [y, m, d] = iso.split("-").map(Number);
     return new Date(y, m - 1, d).toLocaleDateString(undefined, { month: "short", day: "numeric" });
   }
 
-  function buildCaptureCard(item) {
-    const card = document.createElement("figure");
-    card.className = "capture";
-
-    const img = document.createElement("img");
-    img.src = item.image;
-    img.alt = item.alt || "";
-    img.loading = "lazy";
-
-    const cap = document.createElement("figcaption");
-
-    const dateEl = document.createElement("span");
-    dateEl.className = "capture-date";
-    dateEl.textContent = formatDate(item.date);
-
-    const text = document.createElement("p");
-    text.className = "capture-text";
-    text.textContent = item.caption;
-
-    cap.appendChild(dateEl);
-    cap.appendChild(text);
-    card.appendChild(img);
-    card.appendChild(cap);
-    return card;
+  function img(item) {
+    const i = el("img");
+    i.src = item.image;
+    i.alt = item.alt || "";
+    i.loading = "lazy";
+    i.decoding = "async";
+    if (item.w && item.h) { i.width = item.w; i.height = item.h; }
+    return i;
   }
 
-  function buildChangeConnector(changeText) {
-    const wrap = document.createElement("div");
-    wrap.className = "change-connector";
-    const arrow = document.createElement("span");
-    arrow.className = "change-arrow";
+  /* ---------- record: kept separate from the annotation ---------- */
+  function buildRecord(item) {
+    const d = el("details", "record");
+    d.appendChild(el("summary", null, "Record"));
+    const dl = el("dl");
+    const r = item.record || {};
+    [["Source", r.source], ["Format", r.format], ["Byline", r.byline], ["Published", r.published], ["Captured", r.captured], ["File", item.id]]
+      .forEach(([k, v]) => { if (!v) return; dl.appendChild(el("dt", null, k)); dl.appendChild(el("dd", null, v)); });
+    if (item.redaction) { dl.appendChild(el("dt", null, "Redacted")); dl.appendChild(el("dd", null, item.redaction)); }
+    d.appendChild(dl);
+    return d;
+  }
+
+  function buildMultiRecord(items) {
+    const wrap = el("div", "record-group");
+    items.forEach(it => {
+      const r = buildRecord(it);
+      r.querySelector("summary").textContent = `Record · ${it.record.source} · ${formatDate(it.date)}`;
+      wrap.appendChild(r);
+    });
+    return wrap;
+  }
+
+  /* ---------- marginalia plate (chains) ---------- */
+  function buildPlate(item) {
+    const fig = el("figure", "plate");
+    const frame = el("div", "plate-image");
+    frame.appendChild(img(item));
+    const notes = el("ol", "plate-notes");
+    (item.marks || []).forEach((m, i) => {
+      const pin = el("span", "pin", String(i + 1));
+      pin.style.left = m.x + "%";
+      pin.style.top = m.y + "%";
+      pin.setAttribute("aria-hidden", "true");
+      frame.appendChild(pin);
+      const li = el("li", "plate-note");
+      li.dataset.y = m.y;
+      li.appendChild(el("span", "note-num", String(i + 1)));
+      li.appendChild(el("span", "note-text", m.note));
+      notes.appendChild(li);
+    });
+    fig.appendChild(frame);
+    fig.appendChild(notes);
+    fig.appendChild(svgLayer());
+    const cap = el("figcaption", "plate-meta");
+    cap.appendChild(el("span", "capture-date", `${formatDate(item.date)} · ${item.record.source}`));
+    cap.appendChild(buildRecord(item));
+    fig.appendChild(cap);
+    fig.dataset.layout = "marginalia";
+    return fig;
+  }
+
+  function svgLayer() {
+    const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    s.setAttribute("class", "leaders");
+    s.setAttribute("aria-hidden", "true");
+    return s;
+  }
+
+  function buildConnector(text, contests) {
+    const wrap = el("div", "change-connector" + (contests ? " contests" : ""));
+    const arrow = el("span", "change-arrow", contests ? "⌁" : "↓");
     arrow.setAttribute("aria-hidden", "true");
-    arrow.textContent = "↓";
-    const text = document.createElement("p");
-    text.className = "change-text";
-    text.textContent = changeText;
     wrap.appendChild(arrow);
-    wrap.appendChild(text);
+    wrap.appendChild(el("p", "change-text", text));
     return wrap;
   }
 
   function buildChainSection(chain) {
-    const section = document.createElement("section");
-    section.className = "chain";
-
-    const header = document.createElement("div");
-    header.className = "chain-header";
-
-    const tag = document.createElement("span");
-    tag.className = `chain-tag chain-tag-${chain.relationship}`;
-    tag.textContent = RELATIONSHIP_LABELS[chain.relationship] || chain.relationship;
-    header.appendChild(tag);
+    const section = el("section", "chain chain-" + chain.relationship);
+    const header = el("div", "chain-header");
+    header.appendChild(el("span", `chain-tag chain-tag-${chain.relationship}`, RELATIONSHIP_LABELS[chain.relationship] || chain.relationship));
+    if (chain.title) header.appendChild(el("h2", "chain-title", chain.title));
     section.appendChild(header);
+    if (chain.divergencePoint) section.appendChild(el("p", "chain-divergence", `Diverges on: ${chain.divergencePoint}`));
 
-    const isFork = chain.relationship === "contested" || chain.relationship === "both";
-
-    if (isFork) {
-      if (chain.divergencePoint) {
-        const div = document.createElement("p");
-        div.className = "chain-divergence";
-        div.textContent = `Diverges on: ${chain.divergencePoint}`;
-        section.appendChild(div);
-      }
-
-      const fork = document.createElement("div");
-      fork.className = "chain-fork";
+    if (chain.relationship === "contested") {
+      const fork = el("div", "chain-fork");
       chain.items.forEach(item => {
-        const branch = document.createElement("div");
-        branch.className = "chain-branch";
-        branch.appendChild(buildCaptureCard(item));
-        if (item.change) {
-          const note = document.createElement("p");
-          note.className = "change-text branch-change-text";
-          note.textContent = item.change;
-          branch.appendChild(note);
-        }
-        fork.appendChild(branch);
+        const b = el("div", "chain-branch");
+        b.appendChild(buildPlate(item));
+        if (item.change) b.appendChild(el("p", "change-text branch-change-text", item.change));
+        fork.appendChild(b);
       });
       section.appendChild(fork);
     } else {
-      const sequence = document.createElement("div");
-      sequence.className = "chain-sequence";
+      // revised and revised + contested both read in the order found. A capture
+      // that contests the ones before it gets a contested connector.
+      const seq = el("div", "chain-sequence");
       chain.items.forEach((item, i) => {
-        if (i > 0 && item.change) {
-          sequence.appendChild(buildChangeConnector(item.change));
-        }
-        sequence.appendChild(buildCaptureCard(item));
+        if (i > 0 && item.change) seq.appendChild(buildConnector(item.change, item.role === "contests"));
+        seq.appendChild(buildPlate(item));
       });
-      section.appendChild(sequence);
+      section.appendChild(seq);
     }
-
     return section;
   }
 
-  function buildIsolatedSection(items) {
-    const section = document.createElement("section");
-    section.className = "isolated-section";
+  /* ---------- sequence, no words ---------- */
+  function buildSequence(seq) {
+    const s = el("section", "sequence-block");
+    s.appendChild(el("h2", "block-label", "Sequence"));
+    const row = el("div", "sequence-row");
+    seq.items.forEach(it => { const f = el("figure", "seq-frame"); f.appendChild(img(it)); row.appendChild(f); });
+    s.appendChild(row);
+    s.appendChild(buildMultiRecord(seq.items));
+    return s;
+  }
 
-    const heading = document.createElement("h2");
-    heading.textContent = "Isolated captures";
-    const note = document.createElement("p");
-    note.className = "isolated-note";
-    note.textContent = "Logged, but no linked version has turned up yet.";
-    section.appendChild(heading);
-    section.appendChild(note);
+  /* ---------- grid, one caption ---------- */
+  function buildGrid(g) {
+    const s = el("div", "grid-block");
+    s.appendChild(el("h3", "block-label", g.title));
+    const grid = el("div", "thumb-grid");
+    g.items.forEach(it => { const f = el("figure", "thumb"); f.appendChild(img(it)); grid.appendChild(f); });
+    s.appendChild(grid);
+    s.appendChild(el("p", "grid-caption", g.caption));
+    s.appendChild(buildMultiRecord(g.items));
+    return s;
+  }
 
-    const grid = document.createElement("div");
-    grid.className = "isolated-grid";
-    items.forEach(item => {
-      const card = buildCaptureCard(item);
-      card.classList.add("isolated-card");
-      grid.appendChild(card);
+  /* ---------- crop and enlarge ---------- */
+  function buildCrop(item) {
+    const fig = el("figure", "plate crop-plate");
+    const frame = el("div", "plate-image");
+    frame.appendChild(img(item));
+    const details = el("div", "crop-details");
+    item.boxes.forEach((b, i) => {
+      const box = el("span", "crop-box");
+      Object.assign(box.style, { left: b.x0 + "%", top: b.y0 + "%", width: (b.x1 - b.x0) + "%", height: (b.y1 - b.y0) + "%" });
+      box.dataset.i = i;
+      frame.appendChild(box);
+      const d = el("div", "crop-detail");
+      d.dataset.i = i;
+      d.appendChild(el("span", "crop-label", b.label));
+      const di = el("img");
+      di.src = b.detail;
+      di.alt = `Enlarged detail: ${b.label}`;
+      di.loading = "lazy";
+      d.appendChild(di);
+      details.appendChild(d);
     });
-    section.appendChild(grid);
-    return section;
+    details.appendChild(el("p", "crop-annotation", item.annotation));
+    if (item.watch) details.appendChild(el("p", "watch-note", item.watch));
+    fig.appendChild(frame);
+    fig.appendChild(details);
+    fig.appendChild(svgLayer());
+    const cap = el("figcaption", "plate-meta");
+    cap.appendChild(el("span", "capture-date", `${formatDate(item.date)} · ${item.record.source}`));
+    cap.appendChild(buildRecord(item));
+    fig.appendChild(cap);
+    fig.dataset.layout = "crop";
+    return fig;
+  }
+
+  /* ---------- words on the image ---------- */
+  function buildWordsCard(item) {
+    const fig = el("figure", "capture words-card isolated-card");
+    const frame = el("div", "words-frame");
+    frame.appendChild(img(item));
+    const w = el("span", "words", item.words.text);
+    w.style.left = item.words.x + "%";
+    w.style.top = item.words.y + "%";
+    frame.appendChild(w);
+    fig.appendChild(frame);
+    const cap = el("figcaption");
+    cap.appendChild(el("span", "capture-date", `${formatDate(item.date)} · ${item.record.source}`));
+    if (item.watch) cap.appendChild(el("p", "watch-note", item.watch));
+    cap.appendChild(buildRecord(item));
+    fig.appendChild(cap);
+    return fig;
+  }
+
+  /* ---------- caption below (out of scope, on purpose) ---------- */
+  function buildPlainCard(item) {
+    const fig = el("figure", "capture plain-card");
+    fig.appendChild(img(item));
+    const cap = el("figcaption");
+    cap.appendChild(el("span", "capture-date", `${formatDate(item.date)} · ${item.record.source}`));
+    cap.appendChild(el("p", "capture-text", item.caption));
+    cap.appendChild(buildRecord(item));
+    fig.appendChild(cap);
+    return fig;
+  }
+
+  /* ---------- leader lines ---------- */
+  function drawLeaders(plate) {
+    const svg = plate.querySelector("svg.leaders");
+    if (!svg) return;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    const frame = plate.querySelector(".plate-image");
+    const wide = plate.classList.contains("is-wide");
+    const pr = plate.getBoundingClientRect();
+    svg.setAttribute("width", pr.width);
+    svg.setAttribute("height", pr.height);
+    if (!wide) return;
+    const fr = frame.getBoundingClientRect();
+    const line = (pts, cls) => {
+      const p = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+      p.setAttribute("points", pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(" "));
+      p.setAttribute("class", cls || "");
+      svg.appendChild(p);
+    };
+    if (plate.dataset.layout === "marginalia") {
+      const pins = plate.querySelectorAll(".pin");
+      const notes = plate.querySelectorAll(".plate-note");
+      pins.forEach((pin, i) => {
+        const n = notes[i];
+        if (!n) return;
+        const a = pin.getBoundingClientRect();
+        const b = n.getBoundingClientRect();
+        const ax = a.left + a.width / 2 - pr.left, ay = a.top + a.height / 2 - pr.top;
+        const ex = fr.right - pr.left + 6;
+        const by = b.top + 11 - pr.top, bx = b.left - pr.left - 6;
+        line([[ax, ay], [ex, ay], [bx - 10, by], [bx, by]]);
+      });
+    } else if (plate.dataset.layout === "crop") {
+      plate.querySelectorAll(".crop-box").forEach(box => {
+        const d = plate.querySelector(`.crop-detail[data-i="${box.dataset.i}"] img`);
+        if (!d) return;
+        const a = box.getBoundingClientRect(), b = d.getBoundingClientRect();
+        line([[a.right - pr.left, a.top + a.height / 2 - pr.top], [b.left - pr.left, b.top + b.height / 2 - pr.top]], "crop-leader");
+      });
+    }
+  }
+
+  function layoutMarginalia(plate) {
+    const wide = plate.getBoundingClientRect().width >= 520;
+    plate.classList.toggle("is-wide", wide);
+    const notes = plate.querySelectorAll(".plate-note");
+    const list = plate.querySelector(".plate-notes");
+    if (!list) return drawLeaders(plate);
+    if (!wide) { notes.forEach(n => (n.style.top = "")); list.style.height = ""; return drawLeaders(plate); }
+    const h = plate.querySelector(".plate-image").getBoundingClientRect().height;
+    let floor = 0;
+    notes.forEach(n => {
+      let top = Math.max((parseFloat(n.dataset.y) / 100) * h - 11, floor);
+      n.style.top = top + "px";
+      floor = top + n.getBoundingClientRect().height + 10;
+    });
+    list.style.height = Math.max(h, floor) + "px";
+    drawLeaders(plate);
+  }
+
+  function layoutAll() {
+    document.querySelectorAll(".plate").forEach(p => {
+      if (p.dataset.layout === "marginalia") layoutMarginalia(p);
+      else { p.classList.toggle("is-wide", p.getBoundingClientRect().width >= 520); drawLeaders(p); }
+    });
   }
 
   function chainStartDate(chain) {
@@ -140,25 +290,57 @@
   function render() {
     const log = document.getElementById("log");
     log.innerHTML = "";
+    const C = typeof chains !== "undefined" ? chains : [];
+    const S = typeof sequences !== "undefined" ? sequences : [];
+    const G = typeof grids !== "undefined" ? grids : [];
+    const X = typeof crops !== "undefined" ? crops : [];
+    const I = typeof isolatedCaptures !== "undefined" ? isolatedCaptures : [];
+    const O = typeof outOfScope !== "undefined" ? outOfScope : [];
 
-    const hasChains = typeof chains !== "undefined" && chains.length > 0;
-    const hasIsolated = typeof isolatedCaptures !== "undefined" && isolatedCaptures.length > 0;
-
-    if (!hasChains && !hasIsolated) {
+    if (![C, S, G, X, I, O].some(a => a && a.length)) {
       log.innerHTML = "<p class='empty'>No captures yet.</p>";
       return;
     }
 
-    if (hasChains) {
-      const sorted = chains.slice().sort((a, b) => chainStartDate(b).localeCompare(chainStartDate(a)));
-      sorted.forEach(chain => log.appendChild(buildChainSection(chain)));
+    C.slice().sort((a, b) => chainStartDate(b).localeCompare(chainStartDate(a))).forEach(c => log.appendChild(buildChainSection(c)));
+    S.forEach(s => log.appendChild(buildSequence(s)));
+
+    if (G.length || X.length || I.length) {
+      const sec = el("section", "isolated-section");
+      sec.appendChild(el("h2", null, "Isolated captures"));
+      sec.appendChild(el("p", "isolated-note", "Logged, but no linked version has turned up yet. Clusters are annotated as a pile. Single captures get a few words inside the frame, or an enlarged detail when the claim lives in one line."));
+      G.forEach(g => sec.appendChild(buildGrid(g)));
+      if (X.length) {
+        const cropWrap = el("div", "crop-list");
+        X.slice().sort((a, b) => b.date.localeCompare(a.date)).forEach(x => cropWrap.appendChild(buildCrop(x)));
+        sec.appendChild(cropWrap);
+      }
+      if (I.length) {
+        const grid = el("div", "isolated-grid");
+        I.slice().sort((a, b) => b.date.localeCompare(a.date)).forEach(i => grid.appendChild(buildWordsCard(i)));
+        sec.appendChild(grid);
+      }
+      log.appendChild(sec);
     }
 
-    if (hasIsolated) {
-      const sorted = isolatedCaptures.slice().sort((a, b) => b.date.localeCompare(a.date));
-      log.appendChild(buildIsolatedSection(sorted));
+    if (O.length) {
+      const sec = el("section", "out-section");
+      sec.appendChild(el("h2", null, "Out of scope"));
+      sec.appendChild(el("p", "isolated-note", "Kept on file, outside the argument. These get the default caption on purpose."));
+      const grid = el("div", "isolated-grid");
+      O.forEach(o => grid.appendChild(buildPlainCard(o)));
+      sec.appendChild(grid);
+      log.appendChild(sec);
     }
+
+    // lay out once images have real heights, and again on resize
+    document.querySelectorAll(".plate img").forEach(i => i.addEventListener("load", layoutAll, { once: true }));
+    let t;
+    window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(layoutAll, 120); });
+    window.addEventListener("load", layoutAll);
+    requestAnimationFrame(layoutAll);
   }
 
+  window.SignalDriftLayout = () => layoutAll();
   render();
 })();

@@ -43,7 +43,7 @@
 
   // ---- tag reveal + draw-line targets ----
   document
-    .querySelectorAll(".chain, .isolated-section, .vision-page section, .vision-lead")
+    .querySelectorAll(".chain, .sequence-block, .grid-block, .crop-plate, .words-card, .out-section, .vision-page section, .vision-lead")
     .forEach(el => el.classList.add("reveal"));
 
   document
