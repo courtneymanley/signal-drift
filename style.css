@@ -614,3 +614,198 @@ svg.leaders polyline.crop-leader { stroke: var(--rel-revised); stroke-dasharray:
 .source-label { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--rel-revised); }
 .source-note a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rel-revised); }
 .source-note a:hover { color: var(--rel-revised); }
+
+/* ============================================================
+   NAVIGATION + ARRIVAL LAYER (Oct 2026)
+   Filters on the legend tags, a chain index, an overview strip
+   per chain, a compare view, and the reader as the last stop.
+   ============================================================ */
+
+[hidden] { display: none !important; }
+
+/* ---------- legend tags are buttons now ---------- */
+button.tag {
+  cursor: pointer;
+  font: inherit;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+button.tag:hover { background: rgba(233, 230, 218, 0.06); }
+button.tag[aria-pressed="true"] { background: currentColor; }
+button.tag[aria-pressed="true"] { color: var(--bg); }
+button.tag.chain-tag-revised[aria-pressed="true"]   { background: var(--rel-revised); }
+button.tag.chain-tag-contested[aria-pressed="true"] { background: var(--rel-contested); }
+button.tag.chain-tag-both[aria-pressed="true"]      { background: var(--rel-both); }
+button.tag.tag-isolated[aria-pressed="true"]        { background: var(--muted-ink); }
+.tag-count { opacity: 0.75; margin-left: 0.2rem; }
+.tag-count:empty { display: none; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--rel-revised); outline-offset: 2px; }
+
+.legend-hint { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-ink); margin: 0.9rem 0 0; }
+.filter-status { font-family: var(--mono); font-size: 0.78rem; color: var(--ink); margin: 0.75rem 0 0; }
+.link-btn { background: none; border: none; border-bottom: 1px solid currentColor; padding: 0; font: inherit; cursor: pointer; }
+
+/* ---------- chain index ---------- */
+.chain-index { margin-top: 1.5rem; }
+.chain-index .block-label { margin: 0 0 0.5rem; }
+.chain-index-list {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.15rem 1.5rem;
+}
+.ci-item a {
+  display: flex; align-items: baseline; gap: 0.55rem;
+  padding: 0.3rem 0; color: var(--ink); text-decoration: none;
+  font-size: 0.86rem; border-bottom: 1px solid var(--line);
+}
+.ci-item a:hover .ci-title { color: var(--rel-revised); }
+.ci-mark { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--muted-ink); transform: translateY(-1px); }
+.ci-revised .ci-mark   { background: var(--rel-revised); }
+.ci-contested .ci-mark { background: var(--rel-contested); }
+.ci-both .ci-mark      { background: var(--rel-both); }
+.ci-title { flex: 1; min-width: 0; }
+.ci-count { font-family: var(--mono); font-size: 0.7rem; color: var(--muted-ink); }
+
+.chain { scroll-margin-top: 4rem; }
+.plate { scroll-margin-top: 4.5rem; }
+.plate:target { outline: 1px solid var(--accent, var(--rel-revised)); outline-offset: 3px; }
+
+/* ---------- overview strip ---------- */
+.chain-overview {
+  margin: 0 0 1.75rem;
+  padding: 0.9rem 0 0.4rem;
+  border-top: 1px dashed var(--line);
+  border-bottom: 1px dashed var(--line);
+}
+.overview-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.overview-head .block-label { margin: 0; }
+.overview-row {
+  list-style: none; margin: 0; padding: 0 0 0.75rem;
+  display: flex; align-items: stretch; gap: 0.5rem;
+  overflow-x: auto; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+}
+.ov-step, .ov-change, .ov-reader { flex: none; scroll-snap-align: start; }
+.ov-step { width: 104px; }
+.ov-step-link {
+  position: relative; display: flex; flex-direction: column; gap: 0.15rem;
+  color: var(--ink); text-decoration: none;
+}
+.ov-step-link img {
+  display: block; width: 100%; height: 150px; object-fit: cover; object-position: top;
+  border: 1px solid var(--line); border-radius: 2px; filter: saturate(0.7);
+  margin-bottom: 0.3rem; transition: border-color 0.15s ease;
+}
+.ov-step-link:hover img { border-color: var(--accent, var(--rel-revised)); }
+.ov-num {
+  position: absolute; top: 6px; left: 6px;
+  min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px;
+  background: var(--accent, var(--rel-revised)); color: var(--bg);
+  font-family: var(--mono); font-size: 0.62rem; font-weight: 700; line-height: 18px; text-align: center;
+}
+.ov-date, .ov-lag { font-family: var(--mono); font-size: 0.66rem; color: var(--muted-ink); }
+.ov-source { font-size: 0.74rem; line-height: 1.25; color: var(--ink); overflow-wrap: anywhere; }
+.ov-lag::before { content: "↳ "; color: var(--accent, var(--rel-revised)); }
+
+.ov-change { width: 168px; display: flex; }
+.ov-change-btn {
+  display: flex; flex-direction: column; justify-content: center; gap: 0.35rem;
+  width: 100%; padding: 0.5rem 0.6rem; text-align: left; cursor: pointer;
+  background: transparent; color: var(--muted-ink);
+  border: none; border-left: 1px dashed var(--line); border-right: 1px dashed var(--line);
+  font: inherit; font-family: var(--mono); font-size: 0.7rem; line-height: 1.4;
+}
+.ov-change-btn:hover { color: var(--ink); background: rgba(233, 230, 218, 0.03); }
+.ov-change-text::before { content: "→ "; color: var(--accent, var(--rel-revised)); }
+.ov-change.is-contest .ov-change-btn { color: var(--ink); border-color: var(--rel-contested); }
+.ov-change.is-contest .ov-change-text::before { content: "⌁ "; color: var(--rel-contested); }
+.ov-turn {
+  align-self: flex-start;
+  font-family: var(--mono); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--rel-contested); border: 1px solid currentColor; border-radius: 2px; padding: 0.12rem 0.4rem;
+}
+
+.ov-reader {
+  width: 150px; display: flex; flex-direction: column; justify-content: center; gap: 0.3rem;
+  padding: 0.6rem 0.75rem; border: 1px dashed var(--ink); border-radius: 2px;
+}
+.ov-reader-label { font-family: var(--mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); }
+.ov-reader-label::before { content: "◉ "; color: var(--accent, var(--rel-revised)); }
+.ov-reader-place { font-size: 0.8rem; color: var(--ink); }
+.ov-reader-span { font-family: var(--mono); font-size: 0.66rem; line-height: 1.45; color: var(--muted-ink); }
+
+.compare-btn {
+  background: transparent; color: var(--rel-revised); cursor: pointer;
+  border: 1px solid var(--line); border-radius: 2px; padding: 0.3rem 0.6rem;
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.04em;
+}
+.compare-btn:hover:not(:disabled) { border-color: var(--rel-revised); }
+.compare-btn:disabled { color: var(--muted-ink); opacity: 0.5; cursor: default; }
+.change-connector .compare-btn { margin-top: 0.45rem; }
+.change-connector.contests .compare-btn { color: var(--rel-contested); }
+
+/* ---------- arrival line ---------- */
+.arrival-line { display: block; font-family: var(--mono); font-size: 0.68rem; color: var(--muted-ink); }
+.arrival-line::before { content: "↳ "; color: var(--accent, var(--rel-revised)); }
+.first-impression { margin: 0.2rem 0 0; font-size: 0.88rem; color: var(--ink); max-width: 60ch; }
+.fi-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--rel-both); }
+.record dd.not-recorded { color: var(--muted-ink); font-style: italic; }
+
+/* ---------- compare dialog ---------- */
+dialog.compare {
+  width: min(1040px, calc(100vw - 2rem)); max-height: calc(100vh - 2rem);
+  padding: 0; border: 1px solid var(--line); border-radius: 2px;
+  background: var(--card-bg); color: var(--ink);
+  flex-direction: column; overflow: hidden;
+}
+dialog.compare[open] { display: flex; }
+dialog.compare::backdrop { background: rgba(10, 10, 14, 0.82); }
+.cmp-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; padding: 1rem 1.25rem 0.75rem; border-bottom: 1px solid var(--line); }
+.cmp-titles { display: flex; flex-direction: column; gap: 0.25rem; }
+.cmp-title { font-size: 0.95rem; }
+.cmp-close { background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 2px; padding: 0.3rem 0.65rem; font-family: var(--mono); font-size: 0.7rem; cursor: pointer; }
+.cmp-body { overflow-y: auto; padding: 1rem 1.25rem; flex: 1; min-height: 0; }
+.cmp-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; max-width: 760px; margin: 0 auto; }
+.cmp-fig { margin: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+.cmp-fig img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 2px; filter: saturate(0.85); }
+.cmp-fig figcaption { display: flex; flex-direction: column; gap: 0.2rem; }
+.cmp-foot { border-top: 1px solid var(--line); padding: 0.85rem 1.25rem 1rem; display: flex; flex-direction: column; gap: 0.75rem; background: var(--card-bg); }
+.cmp-note { display: flex; flex-direction: column; gap: 0.4rem; padding-left: 0.75rem; border-left: 2px solid var(--rel-revised); }
+.cmp-note.contests { border-left-color: var(--rel-contested); }
+.cmp-note .change-text { color: var(--ink); font-size: 0.8rem; max-width: 80ch; }
+.cmp-nav { display: flex; justify-content: space-between; gap: 0.75rem; }
+
+@media (max-width: 640px) {
+  dialog.compare { width: 100vw; max-width: 100vw; max-height: 100dvh; height: 100dvh; margin: 0; border: none; }
+  .cmp-top, .cmp-body, .cmp-foot { padding-left: 0.85rem; padding-right: 0.85rem; }
+  .cmp-pair { gap: 0.5rem; }
+  .cmp-fig .capture-date, .cmp-fig .arrival-line { font-size: 0.6rem; }
+  .ov-change { width: 140px; }
+}
+
+/* ---------- the last stop ---------- */
+.last-stop { margin-top: 4rem; padding: 2rem 1.5rem 1.75rem; border: 1px dashed var(--ink); border-radius: 2px; }
+.last-stop h2 { font-family: var(--mono); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 0.5rem; color: var(--ink); }
+.last-stop h2::before { content: "◉ "; color: var(--rel-revised); }
+.last-stop .isolated-note { max-width: 64ch; }
+.tally { list-style: none; margin: 1.5rem 0; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+.tally-row { display: grid; grid-template-columns: minmax(9rem, 16rem) 1fr 2.5rem; gap: 0.85rem; align-items: center; }
+.tally-name { font-size: 0.86rem; color: var(--ink); }
+.tally-bar { height: 8px; background: var(--line); border-radius: 1px; position: relative; overflow: hidden; }
+.tally-bar::before { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--w); background: var(--rel-revised); }
+.tally-n { font-family: var(--mono); font-size: 0.8rem; color: var(--ink); text-align: right; }
+.stop-stats { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1.25rem; margin: 0 0 1.25rem; font-size: 0.86rem; }
+.stop-stats dt { font-family: var(--mono); font-size: 0.72rem; color: var(--muted-ink); padding-top: 0.12rem; }
+.stop-stats dd { margin: 0; color: var(--ink); }
+
+@media (max-width: 640px) {
+  .tally-row { grid-template-columns: 1fr 2rem; gap: 0.3rem 0.6rem; }
+  .tally-bar { grid-column: 1 / -1; grid-row: 2; }
+  .stop-stats { grid-template-columns: 1fr; gap: 0.1rem; }
+  .stop-stats dd { margin-bottom: 0.6rem; }
+  .last-stop { padding: 1.5rem 1rem; }
+}
