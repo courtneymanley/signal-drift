@@ -129,7 +129,7 @@ const chains = [
             "note": "No count and no county. The dispute is about whether any of it can be checked."
           }
         ],
-        "change": "Diverges: this version doesn't dispute the deaths on their own terms. It disputes the coverage. It never names Pennsylvania, so the link to the captures above is timing and topic."
+        "change": "Diverges: this version doesn't dispute the deaths on their own terms. It disputes the coverage itself. It's commentary on the rising measles coverage, not on Pennsylvania by name."
       },
       {
         "id": "IMG_0828",
@@ -232,6 +232,74 @@ const chains = [
           }
         ],
         "change": "Point of change: a new death and a running total. With the coroner and the state split on the newborn, I can't tell from these captures whether that death is one of the three."
+      },
+      {
+        "id": "IMG_1202",
+        "date": "2026-09-30",
+        "image": "images/IMG_1202.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: Asheville Citizen Times. Headline: What to know about measles in NC with Pennsylvania outbreak announced",
+        "record": {
+          "source": "Asheville Citizen Times",
+          "format": "Apple News article",
+          "byline": "Iris Seaton",
+          "published": "Sep 23, 2026, 12:34 pm EDT",
+          "captured": "2026-09-30 18:56"
+        },
+        "role": "revises",
+        "marks": [
+          {
+            "x": 40,
+            "y": 30,
+            "note": "“Measles in NC”: a North Carolina paper reports the Pennsylvania outbreak."
+          },
+          {
+            "x": 12,
+            "y": 49,
+            "note": "25 new positive cases since Sept. 18."
+          },
+          {
+            "x": 50,
+            "y": 61,
+            "note": "Nationwide, measles is up, “including those of Pennsylvania and Utah.”"
+          }
+        ],
+        "change": "Point of change: a Pennsylvania outbreak becomes a North Carolina story. The count is 25 new cases since Sept. 18, and the national frame arrives with it."
+      },
+      {
+        "id": "Pennsylvania confirms a fifth death associated with widening measles outbreak",
+        "date": "2026-09-30",
+        "image": "images/Pennsylvania confirms a fifth death associated with widening measles outbreak.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: The Philadelphia Inquirer. Headline: Pennsylvania confirms a fifth death associated with widening measles outbreak",
+        "record": {
+          "source": "The Philadelphia Inquirer",
+          "format": "Apple News article",
+          "byline": "Aubrey Whelan",
+          "published": "Sep 30, 2026",
+          "captured": "2026-09-30 18:43"
+        },
+        "role": "revises",
+        "marks": [
+          {
+            "x": 40,
+            "y": 28,
+            "note": "“Fifth death”: up from the third death I captured on Sept. 13."
+          },
+          {
+            "x": 40,
+            "y": 36,
+            "note": "An unvaccinated Lancaster County resident. The county is named, and the death is new."
+          },
+          {
+            "x": 40,
+            "y": 78,
+            "note": "“Fifth death linked to a statewide outbreak.” The frame is now the state."
+          }
+        ],
+        "change": "Point of change: the count moves from three deaths on Sept. 13 to five by Sept. 30, and the frame moves from one county to the state. The captures don't say whether the newborn death in IMG_0695 is among the five."
       }
     ]
   },
@@ -324,6 +392,12 @@ const chains = [
           "captured": "2026-09-23 23:46"
         },
         "redaction": "Covered my own account photo.",
+        "sources": [
+          {
+            "text": "FDA recall notice: Vitruvias Therapeutics, Thyroid Tablets USP 30 mg, lot 504950, potential super potency. FDA publish date Aug. 24, 2026.",
+            "url": "https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/vitruvias-therapeutics-inc-issues-nationwide-recall-one-lot-thyroid-tablets-usp-30-mg-due-potential"
+          }
+        ],
         "role": "contests",
         "marks": [
           {
@@ -339,10 +413,10 @@ const chains = [
           {
             "x": 46,
             "y": 65,
-            "note": "Google's AI Overview, directly below it: no recent or major recall found."
+            "note": "Google's AI Overview, directly below it: no recent or major recall found. The FDA's own notice says otherwise."
           }
         ],
-        "change": "Diverges: two versions on one screen. The news result says the recall escalated. The AI Overview says there's no recall to find. Neither the alert nor the article names the manufacturer, so my search is what connects them."
+        "change": "Diverges: two versions on one screen. The news result says the recall escalated. The AI Overview says there's no recall to find. The FDA's recall notice for Vitruvias thyroid tablets was published Aug. 24, the day before my first capture. The AI version is the one that's wrong."
       }
     ]
   },
@@ -579,6 +653,7 @@ const chains = [
     "title": "Rabies",
     "relationship": "revised",
     "divergencePoint": null,
+    "note": "Linked by rising coverage of one illness as it reaches my region, not by a single event.",
     "items": [
       {
         "id": "IMG_0729",
@@ -684,14 +759,236 @@ const chains = [
           }
         ],
         "change": "Point of change: the national trend comes back as a local event. It reads as its own story, not a continuation of the first."
+      },
+      {
+        "id": "IMG_1155",
+        "date": "2026-09-29",
+        "image": "images/IMG_1155.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: lohud (Rockland/Westchester Journal News). Headline: Rabies warning issued after coyote bites Westchester woman",
+        "record": {
+          "source": "lohud (Rockland/Westchester Journal News)",
+          "format": "Apple News article",
+          "byline": "Nancy Cutler",
+          "published": "Sep 25, 2026, 4:09 pm EDT",
+          "captured": "2026-09-29 10:50"
+        },
+        "role": "revises",
+        "marks": [
+          {
+            "x": 52,
+            "y": 39,
+            "note": "A regional paper, two weeks after the national alert."
+          },
+          {
+            "x": 23,
+            "y": 45.6,
+            "note": "Local officials, not a national outlet."
+          },
+          {
+            "x": 33,
+            "y": 56.7,
+            "note": "The closer it gets to home, the finer the detail: a trail, a street, a day."
+          }
+        ],
+        "change": "Point of change: a second local event, a coyote in Westchester, two weeks after the national alert. The closer the story gets, the more specific it gets about place."
       }
     ]
-  }
-];
-
-const sequences = [
+  },
   {
-    "id": "s01",
+    "id": "c07",
+    "title": "Dengue, Hillsborough County",
+    "relationship": "revised",
+    "divergencePoint": null,
+    "items": [
+      {
+        "id": "IMG_0819",
+        "date": "2026-09-13",
+        "image": "images/IMG_0819.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: dr.beachgem10. Headline: Locally acquired Dengue Fever \"Epicenter\" Hillsborough Florida",
+        "record": {
+          "source": "dr.beachgem10",
+          "format": "Instagram Reel",
+          "byline": "creator",
+          "published": "on-screen date 9/10/26",
+          "captured": "2026-09-13 11:46"
+        },
+        "redaction": "Covered a private user's handle in the \"Liked by\" line.",
+        "role": "start",
+        "marks": [
+          {
+            "x": 38,
+            "y": 17,
+            "note": "The place and the warning, in one on-screen banner."
+          },
+          {
+            "x": 50,
+            "y": 45,
+            "note": "No agency, no outlet, no byline in frame. The authority is a face."
+          },
+          {
+            "x": 89,
+            "y": 7.5,
+            "note": "The creator's own date stamp, three days before I saw it."
+          }
+        ],
+        "change": null
+      },
+      {
+        "id": "IMG_1090",
+        "date": "2026-09-25",
+        "image": "images/IMG_1090.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: The Washington Post. Headline: Florida counties declare emergency over 'wildly unusual' dengue outbreak",
+        "record": {
+          "source": "The Washington Post",
+          "format": "Apple News article",
+          "byline": "Alex DeLuca",
+          "published": "Sep 25, 2026, 2:39 pm",
+          "captured": "2026-09-25 18:02"
+        },
+        "role": "revises",
+        "marks": [
+          {
+            "x": 14,
+            "y": 30,
+            "note": "Now an emergency, declared by counties."
+          },
+          {
+            "x": 10,
+            "y": 43.5,
+            "note": "A death becomes a clause: “killed one woman in Tampa.”"
+          },
+          {
+            "x": 46,
+            "y": 82,
+            "note": "The CDC shows up only in the photo credit."
+          }
+        ],
+        "change": "Point of change: a creator's warning becomes an official emergency, and the outbreak now has a death attached."
+      },
+      {
+        "id": "IMG_1091",
+        "date": "2026-09-25",
+        "image": "images/IMG_1091.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: Tampa Bay Times (masthead scrolling out of frame). Headline: Tampa woman is first dengue fever death recorded in Florida",
+        "record": {
+          "source": "Tampa Bay Times (masthead scrolling out of frame)",
+          "format": "Apple News article",
+          "byline": "Lane DeGregory, Lauren Peace",
+          "published": "Sep 18, 2026, 5:21 pm",
+          "captured": "2026-09-25 18:02"
+        },
+        "role": "revises",
+        "marks": [
+          {
+            "x": 38,
+            "y": 21,
+            "note": "“First … recorded in Florida.”"
+          },
+          {
+            "x": 58,
+            "y": 31,
+            "note": "“First in Tampa Bay in almost a century.”"
+          },
+          {
+            "x": 48,
+            "y": 90,
+            "note": "“First … in the state this year.” Three different firsts on one screen."
+          }
+        ],
+        "change": "Point of change: going back a week to the local paper, the death has a name and a family, and “first” means three different things depending on which line you read. Published a week before the Post story. Found 24 seconds after it."
+      }
+    ]
+  },
+  {
+    "id": "c08",
+    "title": "Brain-eating amoeba, North Carolina",
+    "relationship": "revised",
+    "divergencePoint": null,
+    "items": [
+      {
+        "id": "IMG_1096",
+        "date": "2026-09-25",
+        "image": "images/IMG_1096.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: The News & Observer (McClatchy). Headline: Central NC family starts fundraiser for teen hospitalized with brain-eating amoeba",
+        "record": {
+          "source": "The News & Observer (McClatchy)",
+          "format": "Web article, mobile browser",
+          "byline": "Twumasi Duah-Mensah",
+          "published": "Aug 28, 2026, 6:16 pm",
+          "captured": "2026-09-25 18:08"
+        },
+        "role": "start",
+        "marks": [
+          {
+            "x": 50,
+            "y": 46,
+            "note": "Filed as local news."
+          },
+          {
+            "x": 46,
+            "y": 56,
+            "note": "The family's version: a fundraiser."
+          },
+          {
+            "x": 46,
+            "y": 80,
+            "note": "Published Aug. 28. I found it Sept. 25."
+          }
+        ],
+        "change": null
+      },
+      {
+        "id": "IMG_1097",
+        "date": "2026-09-25",
+        "image": "images/IMG_1097.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: ABC News. Headline: North Carolina teen critically ill (brain-eating amoeba, per state health officials)",
+        "record": {
+          "source": "ABC News",
+          "format": "Facebook post",
+          "byline": "page post",
+          "published": "Aug 28",
+          "captured": "2026-09-25 18:08"
+        },
+        "redaction": "Covered the comment box, which shows my own Facebook name.",
+        "role": "revises",
+        "marks": [
+          {
+            "x": 29,
+            "y": 11,
+            "note": "Same day as the fundraiser story."
+          },
+          {
+            "x": 38,
+            "y": 22,
+            "note": "The official version: no name released."
+          },
+          {
+            "x": 48,
+            "y": 31,
+            "note": "The prognosis, quoted from the state."
+          }
+        ],
+        "change": "Point of change: from the family's fundraiser to the state's statement. The family has a cause to give to. The state has a prognosis, and no name."
+      }
+    ]
+  },
+  {
+    "id": "c09",
+    "title": "A flu season without a push",
+    "relationship": "revised",
+    "divergencePoint": null,
     "items": [
       {
         "id": "IMG_0586",
@@ -706,8 +1003,223 @@ const sequences = [
           "byline": "Jillian Wilson",
           "published": "08/28/2026, 7:00 am EDT",
           "captured": "2026-08-30 12:26"
-        }
+        },
+        "role": "start",
+        "marks": [
+          {
+            "x": 50,
+            "y": 33,
+            "note": "“Radio silence.” The absence is the news."
+          },
+          {
+            "x": 50,
+            "y": 41.5,
+            "note": "The deck names who's quiet."
+          },
+          {
+            "x": 50,
+            "y": 51,
+            "note": "Late August, before the season starts."
+          }
+        ],
+        "change": null
       },
+      {
+        "id": "IMG_1094",
+        "date": "2026-09-25",
+        "image": "images/IMG_1094.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: The Wall Street Journal. Headline: What to Know About a Flu Season Without a Flu-Shot Push",
+        "record": {
+          "source": "The Wall Street Journal",
+          "format": "Apple News article",
+          "byline": "Sabrina Siddiqui",
+          "published": "Sep 23, 2026, 2:38 pm EDT",
+          "captured": "2026-09-25 18:04"
+        },
+        "role": "revises",
+        "marks": [
+          {
+            "x": 48,
+            "y": 32,
+            "note": "Radio silence is now “a flu season without a flu-shot push.”"
+          },
+          {
+            "x": 48,
+            "y": 43,
+            "note": "The stakes arrive: deaths, and children."
+          },
+          {
+            "x": 48,
+            "y": 79,
+            "note": "The number is in the photo caption."
+          }
+        ],
+        "change": "Point of change: a service piece about where to get a shot becomes a story about what happens without the campaign. Four weeks later, the missing push has consequences attached."
+      }
+    ]
+  },
+  {
+    "id": "c10",
+    "title": "Orange County drill outbreak",
+    "relationship": "revised",
+    "divergencePoint": null,
+    "note": "Same event, one county: a possible outbreak becomes a confirmed one.",
+    "items": [
+      {
+        "id": "IMG_1201",
+        "date": "2026-09-30",
+        "image": "images/IMG_1201.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: News 12 Hudson Valley. Headline: Orange County investigates possible mass food poisoning among employees after emergency drill",
+        "record": {
+          "source": "News 12 Hudson Valley",
+          "format": "Web article (hudsonvalley.news12.com)",
+          "byline": "Blaise Gomez",
+          "published": "Sep 15, 2026, 4:42 PM",
+          "captured": "2026-09-30 18:54"
+        },
+        "role": "start",
+        "marks": [
+          {
+            "x": 40,
+            "y": 36,
+            "note": "Possible mass food poisoning among employees, after a drill."
+          },
+          {
+            "x": 40,
+            "y": 50,
+            "note": "Published Sep 15, updated 15 days before capture."
+          },
+          {
+            "x": 20,
+            "y": 70,
+            "note": "“Developing story.” The outbreak isn't named yet."
+          }
+        ],
+        "change": null
+      },
+      {
+        "id": "IMG_1200",
+        "date": "2026-09-30",
+        "image": "images/IMG_1200.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: News 12 Westchester. Headline: Norovirus confirmed as cause of outbreak that sickened 60 after Orange County emergency drill",
+        "record": {
+          "source": "News 12 Westchester",
+          "format": "Apple News article",
+          "byline": "Blaise Gomez",
+          "published": "Sep 24, 2026",
+          "captured": "2026-09-30 18:53"
+        },
+        "role": "revises",
+        "marks": [
+          {
+            "x": 35,
+            "y": 62,
+            "note": "Norovirus, confirmed. The cause is now named."
+          },
+          {
+            "x": 40,
+            "y": 81,
+            "note": "Sickened 60. The “possible” outbreak is now a count."
+          },
+          {
+            "x": 20,
+            "y": 88,
+            "note": "The Sept. 9 event at the county's Emergency Management facility."
+          }
+        ],
+        "change": "Point of change: “possible mass food poisoning” becomes a confirmed norovirus outbreak with 60 people sick, and the drill's date is named."
+      }
+    ]
+  },
+  {
+    "id": "c11",
+    "title": "Mayim Bialik and GLP-1, one article",
+    "relationship": "revised",
+    "divergencePoint": null,
+    "note": "INFERENCE: same outlet, writer and story. Confirm by opening the article.",
+    "items": [
+      {
+        "id": "IMG_0821",
+        "date": "2026-09-13",
+        "image": "images/IMG_0821.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: Entertainment Weekly. Headline: Mayim Bialik says she had 'nightmare' symptoms after GLP-1 injection",
+        "record": {
+          "source": "Entertainment Weekly",
+          "format": "Apple News article",
+          "byline": "Mekishana Pierre",
+          "published": "Sep 10, 2026 (updated)",
+          "captured": "2026-09-13 17:50"
+        },
+        "role": "start",
+        "marks": [
+          {
+            "x": 40,
+            "y": 33,
+            "note": "“Nightmare” and “explosive” diarrhea, both in the headline."
+          },
+          {
+            "x": 30,
+            "y": 54,
+            "note": "Updated on September 10, 2026."
+          },
+          {
+            "x": 50,
+            "y": 70,
+            "note": "The subject is a celebrity, not a patient or a doctor."
+          }
+        ],
+        "change": null
+      },
+      {
+        "id": "IMG_1608",
+        "date": "2026-10-22",
+        "image": "images/IMG_1608.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: Entertainment Weekly. Headline: Mayim Bialik details her 'nightmare' experience after just one GLP-1 injection",
+        "record": {
+          "source": "Entertainment Weekly",
+          "format": "Apple News article",
+          "byline": "Mekishana Pierre",
+          "published": "Updated Oct 21, 2026",
+          "captured": "2026-10-22 10:56"
+        },
+        "role": "revises",
+        "marks": [
+          {
+            "x": 40,
+            "y": 30,
+            "note": "“Nightmare” stays. “Explosive” is gone, and “just one GLP-1 injection” is new."
+          },
+          {
+            "x": 25,
+            "y": 51,
+            "note": "Updated on October 21, 2026. The date moved, not the story."
+          },
+          {
+            "x": 50,
+            "y": 88,
+            "note": "The photo is from the 2025 Venice festival, not this week."
+          }
+        ],
+        "change": "Point of change: the headline drops “explosive” and adds “just one injection.” The story is the same one, and the update is six weeks later."
+      }
+    ]
+  }
+];
+
+const sequences = [
+  {
+    "id": "s01",
+    "items": [
       {
         "id": "IMG_0823",
         "date": "2026-09-13",
@@ -813,7 +1325,7 @@ const grids = [
   {
     "id": "g02",
     "title": "One patient carries the headline",
-    "caption": "Three captures where one person's scare is the headline. Two are by the same Newsweek writer, published the same day. None connects to another version of its underlying fact, so each stays isolated. Together they show a format, the near miss, that the feed keeps serving.",
+    "caption": "Four captures where one person's scare carries the headline. Three are from Newsweek, and two of those are by the same writer on the same day. None connects to another version of its underlying fact, so each stays isolated. Together they show a format the feed keeps serving: the thing that almost went unnoticed.",
     "items": [
       {
         "id": "IMG_0531",
@@ -858,6 +1370,177 @@ const grids = [
           "byline": "Rachael O'Connor",
           "published": "Aug 28, 2026",
           "captured": "2026-08-30 12:25"
+        }
+      },
+      {
+        "id": "IMG_1092",
+        "date": "2026-09-25",
+        "image": "images/IMG_1092.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: Newsweek. Headline: An 18-year-old's parents thought her symptoms were \"for attention\", then came an MRI",
+        "record": {
+          "source": "Newsweek",
+          "format": "Apple News article, first person",
+          "byline": "byline hidden behind the app bar",
+          "published": "not visible",
+          "captured": "2026-09-25 18:03"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g03",
+    "title": "One drug class, three tellers",
+    "caption": "Three captures about GLP-1 drugs, and they don't share one fact. A newspaper reports patients suing over vision loss. A pharmacy's injections are recalled nationwide. An opinion column calls the side effects revolutionary. The drug class is the only thread, so each stays isolated. Together they tell the product as lawsuit, recall and promise.",
+    "items": [
+      {
+        "id": "IMG_1071",
+        "date": "2026-09-25",
+        "image": "images/IMG_1071.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: The Wall Street Journal. Headline: Patients Sue GLP-1 Drugmakers Over Risk of Sudden Vision Loss",
+        "record": {
+          "source": "The Wall Street Journal",
+          "format": "Apple News article",
+          "byline": "Alex Janin",
+          "published": "Sep 18, 2026, 8:00 pm EDT",
+          "captured": "2026-09-25 02:17"
+        }
+      },
+      {
+        "id": "IMG_1607",
+        "date": "2026-10-22",
+        "image": "images/IMG_1607.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: lohud (Journal News). Headline: GLP-1 injections recalled across the US. What to know",
+        "record": {
+          "source": "lohud (Journal News)",
+          "format": "Apple News article",
+          "byline": "Victoria E. Freile",
+          "published": "Oct 22, 2026, 5:41 am EDT",
+          "captured": "2026-10-22 10:56"
+        }
+      },
+      {
+        "id": "IMG_1486",
+        "date": "2026-10-15",
+        "image": "images/IMG_1486.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: The Washington Post. Headline: 'Revolutionary': GLP-1s' most interesting side effects",
+        "record": {
+          "source": "The Washington Post",
+          "format": "Apple News article, opinion",
+          "byline": "byline partly hidden",
+          "published": "Oct 15, 2026, 7:15 am",
+          "captured": "2026-10-15 12:25"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g04",
+    "title": "The warning-sign format",
+    "caption": "Same outlet and template, weeks apart. Each promises a sign in your own body you might be missing. None is tied to an event, so none can chain. They're together because the format is the message.",
+    "items": [
+      {
+        "id": "IMG_0552",
+        "date": "2026-08-28",
+        "image": "images/IMG_0552.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: Gathered. Headline: The deadly signs in your hands you should never ignore",
+        "record": {
+          "source": "Gathered",
+          "format": "Apple News article",
+          "byline": "Gail Shortland",
+          "published": "not visible",
+          "captured": "2026-08-28 15:56"
+        }
+      },
+      {
+        "id": "IMG_1072",
+        "date": "2026-09-25",
+        "image": "images/IMG_1072.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: Gathered. Headline: The strange symptom that can be an early warning sign of cancer",
+        "record": {
+          "source": "Gathered",
+          "format": "Apple News article",
+          "byline": "Gail Shortland",
+          "published": "not visible",
+          "captured": "2026-09-25 02:18"
+        }
+      },
+      {
+        "id": "IMG_1488",
+        "date": "2026-10-15",
+        "image": "images/IMG_1488.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: Gathered. Headline: The deadly warning signs of pancreatic cancer you shouldn't ignore",
+        "record": {
+          "source": "Gathered",
+          "format": "Apple News article",
+          "byline": "not visible",
+          "published": "not visible",
+          "captured": "2026-10-15 12:26"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g05",
+    "title": "The vaccine map",
+    "caption": "Three captures that measure vaccination and measles by place: a state ranking built by a personal finance site, New York children falling behind on routine shots, and New York measles cases climbing since July. They share a subject, not a fact, so none of them chains. Together they're the ground under the Pennsylvania chain, closer to home.",
+    "items": [
+      {
+        "id": "IMG_0829",
+        "date": "2026-09-14",
+        "image": "images/IMG_0829.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: Business Insider. Headline: The 10 states that vaccinate the most, and the 10 that vaccinate the least",
+        "record": {
+          "source": "Business Insider",
+          "format": "Apple News article",
+          "byline": "Tristin Hoffman",
+          "published": "Sep 14, 2026, 5:54 pm GMT (updated)",
+          "captured": "2026-09-14 16:46"
+        }
+      },
+      {
+        "id": "IMG_1152",
+        "date": "2026-09-29",
+        "image": "images/IMG_1152.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: Times Union. Headline: Why more New York children are falling behind on childhood vaccinations",
+        "record": {
+          "source": "Times Union",
+          "format": "Apple News article",
+          "byline": "Julie Zhu",
+          "published": "Sep 29, 2026 (updated)",
+          "captured": "2026-09-29 10:47"
+        }
+      },
+      {
+        "id": "IMG_1154",
+        "date": "2026-09-29",
+        "image": "images/IMG_1154.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: Times Union. Headline: Measles cases in New York have climbed since July, outpacing 2025",
+        "record": {
+          "source": "Times Union",
+          "format": "Apple News article",
+          "byline": "Dan Clark",
+          "published": "Sep 17, 2026 (updated)",
+          "captured": "2026-09-29 10:49"
         }
       }
     ]
@@ -960,71 +1643,44 @@ const crops = [
       }
     ],
     "annotation": "He died in August 2024. This ran in September 2026. The two years in between are the part I didn't get."
+  },
+  {
+    "id": "IMG_1093",
+    "date": "2026-09-25",
+    "image": "images/IMG_1093.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: Newsweek. Headline: A deadly brain cancer may have a hidden weakness. Scientists just found it",
+    "record": {
+      "source": "Newsweek",
+      "format": "Apple News article",
+      "byline": "Melissa Fleur Afshar",
+      "published": "Aug 3, 2026",
+      "captured": "2026-09-25 18:03"
+    },
+    "boxes": [
+      {
+        "x0": 4,
+        "y0": 36.6,
+        "x1": 60,
+        "y1": 41.2,
+        "label": "Headline",
+        "detail": "images/IMG_1093-detail1.jpg"
+      },
+      {
+        "x0": 28,
+        "y0": 82.6,
+        "x1": 72,
+        "y1": 85.8,
+        "label": "Published",
+        "detail": "images/IMG_1093-detail2.jpg"
+      }
+    ],
+    "annotation": "“Just found it.” Published almost eight weeks before it reached me."
   }
 ];
 
 const isolatedCaptures = [
-  {
-    "id": "W01_D01_01_MMH",
-    "date": "2026-08-25",
-    "image": "images/W01_D01_01_MMH.jpg",
-    "w": 720,
-    "h": 1565,
-    "alt": "Screenshot: NBC News. Headline: What is postpartum psychosis? The mental health condition is at the center of the Lindsay Clancy trial",
-    "record": {
-      "source": "NBC News",
-      "format": "Apple News video article",
-      "byline": "Erika Edwards (reporting, per deck)",
-      "published": "Mon, Aug 24",
-      "captured": "2026-08-25 17:26"
-    },
-    "words": {
-      "text": "The trial is why this explainer exists.",
-      "x": 5,
-      "y": 29
-    }
-  },
-  {
-    "id": "W01_D01_01_PHARM",
-    "date": "2026-08-25",
-    "image": "images/W01_D01_01_PHARM.jpg",
-    "w": 720,
-    "h": 1565,
-    "alt": "Screenshot: BBC Science Focus. Headline: Why you should be worried about 'Godzilla Ozempic' right now",
-    "record": {
-      "source": "BBC Science Focus",
-      "format": "Apple News article, Analysis",
-      "byline": "Hatty Willmoth",
-      "published": "not visible",
-      "captured": "2026-08-25 16:41"
-    },
-    "words": {
-      "text": "A nickname standing in for a drug name.",
-      "x": 5,
-      "y": 70
-    },
-    "watch": "Possible link with the Bialik GLP-1 capture, but only by topic so far."
-  },
-  {
-    "id": "IMG_0552",
-    "date": "2026-08-28",
-    "image": "images/IMG_0552.jpg",
-    "w": 720,
-    "h": 1565,
-    "alt": "Screenshot: Gathered. Headline: The deadly signs in your hands you should never ignore",
-    "record": {
-      "source": "Gathered",
-      "format": "Apple News article",
-      "byline": "Gail Shortland",
-      "published": "not visible",
-      "captured": "2026-08-28 15:56"
-    },
-    "words": {
-      "text": "Deadly, but for whom?",
-      "x": 5,
-      "y": 30
-    }
-  },
   {
     "id": "IMG_0569",
     "date": "2026-08-30",
@@ -1288,48 +1944,6 @@ const isolatedCaptures = [
     }
   },
   {
-    "id": "IMG_0819",
-    "date": "2026-09-13",
-    "image": "images/IMG_0819.jpg",
-    "w": 720,
-    "h": 1565,
-    "alt": "Screenshot: dr.beachgem10. Headline: Locally acquired Dengue Fever \"Epicenter\" Hillsborough Florida",
-    "record": {
-      "source": "dr.beachgem10",
-      "format": "Instagram Reel",
-      "byline": "creator",
-      "published": "on-screen date 9/10/26",
-      "captured": "2026-09-13 11:46"
-    },
-    "redaction": "Covered a private user's handle in the \"Liked by\" line.",
-    "words": {
-      "text": "No institution in frame. Just a face.",
-      "x": 5,
-      "y": 72
-    }
-  },
-  {
-    "id": "IMG_0821",
-    "date": "2026-09-13",
-    "image": "images/IMG_0821.jpg",
-    "w": 720,
-    "h": 1565,
-    "alt": "Screenshot: Entertainment Weekly. Headline: Mayim Bialik says she had 'nightmare' symptoms after GLP-1 injection",
-    "record": {
-      "source": "Entertainment Weekly",
-      "format": "Apple News article",
-      "byline": "Mekishana Pierre",
-      "published": "Sep 10, 2026 (updated)",
-      "captured": "2026-09-13 17:50"
-    },
-    "words": {
-      "text": "One person's dose, not a study.",
-      "x": 5,
-      "y": 66
-    },
-    "watch": "Possible link with the “Godzilla Ozempic” capture, but only by topic so far."
-  },
-  {
     "id": "IMG_0822",
     "date": "2026-09-13",
     "image": "images/IMG_0822.jpg",
@@ -1347,26 +1961,6 @@ const isolatedCaptures = [
       "text": "A century-old mystery, filed under today.",
       "x": 5,
       "y": 78
-    }
-  },
-  {
-    "id": "IMG_0829",
-    "date": "2026-09-14",
-    "image": "images/IMG_0829.jpg",
-    "w": 720,
-    "h": 1565,
-    "alt": "Screenshot: Business Insider. Headline: The 10 states that vaccinate the most, and the 10 that vaccinate the least",
-    "record": {
-      "source": "Business Insider",
-      "format": "Apple News article",
-      "byline": "Tristin Hoffman",
-      "published": "Sep 14, 2026, 5:54 pm GMT (updated)",
-      "captured": "2026-09-14 16:46"
-    },
-    "words": {
-      "text": "A finance site draws the vaccine map.",
-      "x": 5,
-      "y": 44
     }
   },
   {
@@ -1451,6 +2045,188 @@ const isolatedCaptures = [
       "x": 5,
       "y": 83.5
     }
+  },
+  {
+    "id": "IMG_1095",
+    "date": "2026-09-25",
+    "image": "images/IMG_1095.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: BBC Wildlife. Headline: \"Confusion, hallucinations and seizures can give way to coma and death.\" The 'brain-eating' organism that lurks in warm water around the world",
+    "record": {
+      "source": "BBC Wildlife",
+      "format": "Apple News article (Health)",
+      "byline": "Helen Pilcher",
+      "published": "Sep 22, 2026",
+      "captured": "2026-09-25 18:06"
+    },
+    "words": {
+      "text": "A wildlife magazine files this under Health.",
+      "x": 5,
+      "y": 76.5
+    },
+    "watch": "Captured two minutes before the North Carolina amoeba chain. Same organism, not the same case."
+  },
+  {
+    "id": "IMG_1153",
+    "date": "2026-09-29",
+    "image": "images/IMG_1153.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: Times Union (Hudson Valley). Headline: Dutchess County man with autism says neighbors' harassment has left him in crisis",
+    "record": {
+      "source": "Times Union (Hudson Valley)",
+      "format": "Apple News article",
+      "byline": "Ben Nandy",
+      "published": "Sep 22, 2026 (updated)",
+      "captured": "2026-09-29 10:48"
+    },
+    "words": {
+      "text": "A diagnosis headlines a neighbor feud.",
+      "x": 5,
+      "y": 62
+    },
+    "watch": "Boundary. Health-adjacent at best."
+  },
+  {
+    "id": "IMG_1196",
+    "date": "2026-09-30",
+    "image": "images/IMG_1196.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: The Washington Post. Headline: This leg condition that's overlooked in women can raise heart attack, stroke risk",
+    "record": {
+      "source": "The Washington Post",
+      "format": "Apple News article",
+      "byline": "Erica Sloan",
+      "published": "Sep 30, 2026, 5:00 am",
+      "captured": "2026-09-30 18:45"
+    },
+    "words": {
+      "text": "Overlooked in women. Heart risk follows.",
+      "x": 5,
+      "y": 30
+    }
+  },
+  {
+    "id": "IMG_1198",
+    "date": "2026-09-30",
+    "image": "images/IMG_1198.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: San Francisco Chronicle. Headline: Mumps outbreak at California college grows, free booster clinic planned",
+    "record": {
+      "source": "San Francisco Chronicle",
+      "format": "Apple News article",
+      "byline": "Catherine Ho",
+      "published": "Updated Sep 30, 2026",
+      "captured": "2026-09-30 18:49"
+    },
+    "words": {
+      "text": "Mumps on a campus. A free booster.",
+      "x": 5,
+      "y": 65
+    }
+  },
+  {
+    "id": "IMG_1199",
+    "date": "2026-09-30",
+    "image": "images/IMG_1199.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: News 12 Westchester. Headline: First mRNA-based flu shot approved in U.S. for adults 50 and older ahead of flu season",
+    "record": {
+      "source": "News 12 Westchester",
+      "format": "Apple News article",
+      "byline": "News 12 Staff",
+      "published": "Sep 30, 2026",
+      "captured": "2026-09-30 18:51"
+    },
+    "words": {
+      "text": "New option for some adults.",
+      "x": 5,
+      "y": 40
+    }
+  },
+  {
+    "id": "IMG_1489",
+    "date": "2026-10-15",
+    "image": "images/IMG_1489.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: The Wall Street Journal. Headline: Big Pharma Is Pouring Billions Into a New Class of 'Protein Degrader' Drugs",
+    "record": {
+      "source": "The Wall Street Journal",
+      "format": "Apple News article",
+      "byline": "not visible",
+      "published": "not visible",
+      "captured": "2026-10-15 12:26"
+    },
+    "words": {
+      "text": "Billions for what couldn't be attacked.",
+      "x": 5,
+      "y": 30
+    }
+  },
+  {
+    "id": "IMG_1605",
+    "date": "2026-10-22",
+    "image": "images/IMG_1605.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: The Washington Post. Headline: Researchers have uncovered a likely origin of our allergies",
+    "record": {
+      "source": "The Washington Post",
+      "format": "Apple News article",
+      "byline": "Michael Eisenstein",
+      "published": "Oct 19, 2026, 5:00 am",
+      "captured": "2026-10-22 10:54"
+    },
+    "words": {
+      "text": "Allergies follow a different path.",
+      "x": 5,
+      "y": 30
+    }
+  },
+  {
+    "id": "IMG_1606",
+    "date": "2026-10-22",
+    "image": "images/IMG_1606.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: Vox. Headline: What Christina Applegate's misdiagnosis reveals about MS",
+    "record": {
+      "source": "Vox",
+      "format": "Apple News article",
+      "byline": "byline partly hidden",
+      "published": "Oct 21, 2026, 3:30 pm EDT",
+      "captured": "2026-10-22 10:55"
+    },
+    "words": {
+      "text": "About 15% of MS diagnoses may be wrong.",
+      "x": 5,
+      "y": 75
+    }
+  },
+  {
+    "id": "IMG_1467",
+    "date": "2026-10-13",
+    "image": "images/IMG_1467.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: The Guardian. Headline: New York governor declares state of emergency after spike in measles cases",
+    "record": {
+      "source": "The Guardian",
+      "format": "Web article (theguardian.com)",
+      "byline": "Adam Gabbatt",
+      "published": "Tue 6 Oct 2026, 09:17 EDT",
+      "captured": "2026-10-13 20:55"
+    },
+    "words": {
+      "text": "Emergency declared after the measles spike.",
+      "x": 5,
+      "y": 25
+    }
   }
 ];
 
@@ -1470,6 +2246,22 @@ const outOfScope = [
       "captured": "2026-09-12 15:40"
     },
     "caption": "Out of scope. Not a health story. Kept on file because the urgency language, a deadline measured in months, is the same register as the health captures, and I want that comparison available later."
+  },
+  {
+    "id": "IMG_1466",
+    "date": "2026-10-13",
+    "image": "images/IMG_1466.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: The Guardian. Headline: Millions of Medicaid recipients to face draconian requirements as of 1 January",
+    "record": {
+      "source": "The Guardian",
+      "format": "Web article (theguardian.com)",
+      "byline": "Jessica Glenza",
+      "published": "Oct 2026 (date partly cut off)",
+      "captured": "2026-10-13 20:54"
+    },
+    "caption": "Policy news about who keeps coverage. Filed below the line, on purpose."
   }
 ];
 

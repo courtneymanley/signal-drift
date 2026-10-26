@@ -45,6 +45,20 @@
     return d;
   }
 
+  function buildSources(item) {
+    if (!item.sources || !item.sources.length) return null;
+    const wrap = el("div", "source-notes");
+    item.sources.forEach(s => {
+      const p = el("p", "source-note");
+      p.appendChild(el("span", "source-label", "Checked · "));
+      const a = el("a", null, s.text);
+      a.href = s.url; a.target = "_blank"; a.rel = "noopener";
+      p.appendChild(a);
+      wrap.appendChild(p);
+    });
+    return wrap;
+  }
+
   function buildMultiRecord(items) {
     const wrap = el("div", "record-group");
     items.forEach(it => {
@@ -78,6 +92,8 @@
     fig.appendChild(svgLayer());
     const cap = el("figcaption", "plate-meta");
     cap.appendChild(el("span", "capture-date", `${formatDate(item.date)} · ${item.record.source}`));
+    const src = buildSources(item);
+    if (src) cap.appendChild(src);
     cap.appendChild(buildRecord(item));
     fig.appendChild(cap);
     fig.dataset.layout = "marginalia";
@@ -107,6 +123,7 @@
     if (chain.title) header.appendChild(el("h2", "chain-title", chain.title));
     section.appendChild(header);
     if (chain.divergencePoint) section.appendChild(el("p", "chain-divergence", `Diverges on: ${chain.divergencePoint}`));
+    if (chain.note) section.appendChild(el("p", "chain-note", chain.note));
 
     if (chain.relationship === "contested") {
       const fork = el("div", "chain-fork");
@@ -135,6 +152,8 @@
     const s = el("section", "sequence-block");
     s.appendChild(el("h2", "block-label", "Sequence"));
     const row = el("div", "sequence-row");
+    row.style.gridTemplateColumns = `repeat(${seq.items.length}, minmax(0, 1fr))`;
+    row.style.maxWidth = (seq.items.length * 260) + "px";
     seq.items.forEach(it => { const f = el("figure", "seq-frame"); f.appendChild(img(it)); row.appendChild(f); });
     s.appendChild(row);
     s.appendChild(buildMultiRecord(seq.items));

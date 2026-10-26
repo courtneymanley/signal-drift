@@ -66,7 +66,9 @@
         }
       });
     },
-    { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    // threshold 0, not a fraction of the element: a tall chain (Measles is ~6000px on
+    // a phone) can never be 15% visible at once and would stay at opacity 0 forever.
+    { threshold: 0, rootMargin: "0px 0px -40px 0px" }
   );
 
   targets.forEach(el => observer.observe(el));
