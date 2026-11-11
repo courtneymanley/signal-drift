@@ -660,7 +660,7 @@ const chains = [
         "date": "2026-09-06",
         "image": "images/IMG_0729.jpg",
         "w": 720,
-        "h": 1565,
+        "h": 1247,
         "alt": "Screenshot: CNN. Headline: Nearly 300 people exposed to goats with rabies at mobile petting zoo",
         "record": {
           "source": "CNN",
@@ -730,7 +730,7 @@ const chains = [
         "date": "2026-09-11",
         "image": "images/IMG_0778.jpg",
         "w": 720,
-        "h": 1565,
+        "h": 1124,
         "alt": "Screenshot: 101.5 WPDH. Headline: Bat tests positive for rabies in the Hudson Valley",
         "record": {
           "source": "101.5 WPDH",
@@ -1213,6 +1213,349 @@ const chains = [
         "change": "Point of change: the headline drops “explosive” and adds “just one injection.” The story is the same one, and the update is six weeks later."
       }
     ]
+  },
+  {
+    "id": "c12",
+    "title": "New York's first measles death in 30 years",
+    "relationship": "revised",
+    "divergencePoint": null,
+    "note": "New York's measles outbreak, from an emergency declaration to its first death. Three tellers across five weeks.",
+    "items": [
+      {
+        "id": "IMG_1467",
+        "date": "2026-10-13",
+        "image": "images/IMG_1467.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: The Guardian. Headline: New York governor declares state of emergency after spike in measles cases",
+        "record": {
+          "source": "The Guardian",
+          "format": "Web article (theguardian.com)",
+          "byline": "Adam Gabbatt",
+          "published": "Tue 6 Oct 2026, 09:17 EDT",
+          "captured": "2026-10-13 20:55"
+        },
+        "role": "start",
+        "marks": [
+          {
+            "x": 50,
+            "y": 66,
+            "note": "A state of emergency, after a spike in cases. No death yet."
+          },
+          {
+            "x": 50,
+            "y": 79,
+            "note": "The deadly outbreak is Pennsylvania's. New York's cases are only “up.”"
+          },
+          {
+            "x": 30,
+            "y": 91,
+            "note": "Published Oct. 6. I captured it a week later."
+          }
+        ],
+        "change": null
+      },
+      {
+        "id": "IMG_1756",
+        "date": "2026-11-03",
+        "image": "images/IMG_1756.jpg",
+        "w": 720,
+        "h": 1390,
+        "alt": "Screenshot: Thehealthsite.com. Headline: Measles claims child's life in New York, first such death in 30 years",
+        "record": {
+          "source": "Thehealthsite.com",
+          "format": "Facebook post",
+          "byline": "not visible",
+          "published": "Nov 3, 2026, posted 18 hours before capture",
+          "captured": "2026-11-03 18:30"
+        },
+        "role": "revises",
+        "marks": [
+          {
+            "x": 50,
+            "y": 13,
+            "note": "Lewis County, and 15 cases this year. The post gives a place and a count."
+          },
+          {
+            "x": 50,
+            "y": 23,
+            "note": "It ends on MMR vaccination. The post tells you what to do."
+          },
+          {
+            "x": 45,
+            "y": 82,
+            "note": "The graphic says “first such death in 30 years.” That's the claim the rest of the post hangs on."
+          }
+        ],
+        "change": "Point of change: an emergency declaration over a spike in cases becomes a death. The county, Lewis, is named for the first time, and the post ends on MMR vaccination."
+      },
+      {
+        "id": "IMG_1827",
+        "date": "2026-11-08",
+        "image": "images/IMG_1827.jpg",
+        "w": 720,
+        "h": 1155,
+        "alt": "Screenshot: Hudson Valley Post. Headline: New York Confirms First Measles Death in 30+ Years Amid Statewide Outbreak",
+        "record": {
+          "source": "Hudson Valley Post",
+          "format": "Facebook post",
+          "byline": "not visible",
+          "published": "Nov 8, 2026, posted 3 hours before capture",
+          "captured": "2026-11-08 10:59"
+        },
+        "role": "revises",
+        "marks": [
+          {
+            "x": 50,
+            "y": 11.5,
+            "note": "“First measles death in more than three decades.” Same claim, new teller."
+          },
+          {
+            "x": 60,
+            "y": 31,
+            "note": "The map: all of New York, one color. The county isn't in the frame."
+          },
+          {
+            "x": 50,
+            "y": 79,
+            "note": "“Confirms” and “statewide outbreak” are new words. The first post had neither."
+          }
+        ],
+        "change": "Point of change: a child from Lewis County becomes “New York,” and the frame moves from one county's case count to a statewide outbreak. The MMR message, the county and the 15 cases aren't in the visible text of the second post."
+      }
+    ]
+  },
+  {
+    "id": "c13",
+    "title": "Medscape's long-ignored syndrome",
+    "relationship": "revised",
+    "divergencePoint": null,
+    "note": "INFERENCE: same article. The headline matches word for word. Confirm by opening the post's link.",
+    "items": [
+      {
+        "id": "IMG_1706",
+        "date": "2026-10-29",
+        "image": "images/IMG_1706.jpg",
+        "w": 720,
+        "h": 1360,
+        "alt": "Screenshot: Medscape. Headline: A Long-Ignored Syndrome Is Drawing Unprecedented Attention",
+        "record": {
+          "source": "Medscape",
+          "format": "Web article (medscape.com)",
+          "byline": "Laurie Tarkan",
+          "published": "Oct 29, 2026",
+          "captured": "2026-10-29 21:47"
+        },
+        "role": "start",
+        "marks": [
+          {
+            "x": 40,
+            "y": 18,
+            "note": "“A Long-Ignored Syndrome.” The headline never names it."
+          },
+          {
+            "x": 30,
+            "y": 36,
+            "note": "Oct. 29, 2026. I captured it the same day."
+          },
+          {
+            "x": 50,
+            "y": 60,
+            "note": "It opens on one 19-year-old college student and her heart rate."
+          }
+        ],
+        "change": null
+      },
+      {
+        "id": "IMG_0003",
+        "date": "2026-11-09",
+        "image": "images/IMG_0003.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: Medscape. Headline: As emerging evidence links POTS to autoimmunity, treatments are shifting toward drugs that target the root cause",
+        "record": {
+          "source": "Medscape",
+          "format": "Facebook post",
+          "byline": "not visible",
+          "published": "posted 11 hours before capture",
+          "captured": "2026-11-09"
+        },
+        "redaction": "Covered the top strip, which shows blurred remnants of the previous screen.",
+        "role": "revises",
+        "marks": [
+          {
+            "x": 50,
+            "y": 15,
+            "note": "POTS, named in the first words, tied to autoimmunity."
+          },
+          {
+            "x": 50,
+            "y": 29,
+            "note": "“Most experts agree COVID triggered the rise.” Then, “some say greater awareness.”"
+          },
+          {
+            "x": 50,
+            "y": 95,
+            "note": "The graphic repeats the headline from Oct. 29, cut off at the edge."
+          }
+        ],
+        "change": "Point of change: the headline that held back the name becomes a post that leads with it. The patient story is gone, and a new angle arrives: drugs that target the root cause. The framing of the rise is hedged. COVID, or greater awareness."
+      }
+    ]
+  },
+  {
+    "id": "c14",
+    "title": "GLP-1 drugs and sudden vision loss",
+    "relationship": "revised",
+    "divergencePoint": null,
+    "note": "The same risk, seven weeks apart: first as a lawsuit, then as an FDA label change.",
+    "items": [
+      {
+        "id": "IMG_1071",
+        "date": "2026-09-25",
+        "image": "images/IMG_1071.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: The Wall Street Journal. Headline: Patients Sue GLP-1 Drugmakers Over Risk of Sudden Vision Loss",
+        "record": {
+          "source": "The Wall Street Journal",
+          "format": "Apple News article",
+          "byline": "Alex Janin",
+          "published": "Sep 18, 2026, 8:00 pm EDT",
+          "captured": "2026-09-25 02:17"
+        },
+        "role": "start",
+        "marks": [
+          {
+            "x": 45,
+            "y": 33,
+            "note": "Sudden vision loss, told as patients suing the drugmakers."
+          },
+          {
+            "x": 45,
+            "y": 42,
+            "note": "“On warning labels outside of U.S.” The risk is already named elsewhere."
+          },
+          {
+            "x": 30,
+            "y": 85,
+            "note": "Sept. 18, 2026. I captured it a week later."
+          }
+        ],
+        "change": null
+      },
+      {
+        "id": "IMG_0017",
+        "date": "2026-11-10",
+        "image": "images/IMG_0017.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: Citizen. Headline: FDA Eye Warning for GLP-1s; Risk Rare",
+        "record": {
+          "source": "Citizen",
+          "format": "Citizen app alert",
+          "byline": "not visible",
+          "published": "Reported 4 hours before capture",
+          "captured": "2026-11-10"
+        },
+        "role": "revises",
+        "marks": [
+          {
+            "x": 45,
+            "y": 39,
+            "note": "“Risk Rare.” The FDA is the teller now, and the headline reassures."
+          },
+          {
+            "x": 40,
+            "y": 42,
+            "note": "Four hours old, 2.7 million notifications. It reached me as a push."
+          },
+          {
+            "x": 45,
+            "y": 77,
+            "note": "“2 to 3 extra cases per 100,000 users a year.” And: “This is not a recall.”"
+          }
+        ],
+        "change": "Point of change: a lawsuit story about a risk on labels abroad becomes an FDA warning on all GLP-1 labels. The word “recall” shows up only to be ruled out, and the number arrives as a reassurance."
+      }
+    ]
+  },
+  {
+    "id": "c15",
+    "title": "Measles, the national count",
+    "relationship": "revised",
+    "divergencePoint": null,
+    "note": "Two days apart, two different counts. Deaths first, then cases.",
+    "items": [
+      {
+        "id": "IMG_1833",
+        "date": "2026-11-08",
+        "image": "images/IMG_1833.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: CNN. Headline: Wisconsin infant is US' third measles-related death this week",
+        "record": {
+          "source": "CNN",
+          "format": "Apple News article",
+          "byline": "Jen Christensen",
+          "published": "Updated Nov 5, 2026, 7:28 pm EST",
+          "captured": "2026-11-08"
+        },
+        "role": "start",
+        "marks": [
+          {
+            "x": 50,
+            "y": 20,
+            "note": "“Third measles-related death this week.” The count is in the headline."
+          },
+          {
+            "x": 45,
+            "y": 65,
+            "note": "The caption: eight deaths so far in 2026, across the states."
+          },
+          {
+            "x": 50,
+            "y": 84,
+            "note": "A Wisconsin first in more than 35 years, and the third in the US this week."
+          }
+        ],
+        "change": null
+      },
+      {
+        "id": "IMG_1838",
+        "date": "2026-11-08",
+        "image": "images/IMG_1838.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: The Washington Post. Headline: The CDC has recorded more than 5,000 measles cases this year",
+        "record": {
+          "source": "The Washington Post",
+          "format": "Apple News article",
+          "byline": "Dhruti Shah",
+          "published": "Nov 7, 2026, 10:30 am",
+          "captured": "2026-11-08"
+        },
+        "role": "revises",
+        "marks": [
+          {
+            "x": 50,
+            "y": 31,
+            "note": "Cases now, not deaths: more than 5,000 this year."
+          },
+          {
+            "x": 50,
+            "y": 40,
+            "note": "“Highest in 35 years,” in 45 states and D.C."
+          },
+          {
+            "x": 40,
+            "y": 82,
+            "note": "The photo is a vaccine clinic in Pennsylvania, last month. The count is national, the picture is local."
+          }
+        ],
+        "change": "Point of change: a state's first death in 35 years becomes a national count of cases, also at a 35-year high. The unit changes from deaths to cases, and the death count drops out of the frame."
+      }
+    ]
   }
 ];
 
@@ -1319,6 +1662,21 @@ const grids = [
           "published": "not visible",
           "captured": "2026-08-30 12:22"
         }
+      },
+      {
+        "id": "IMG_1836",
+        "date": "2026-11-08",
+        "image": "images/IMG_1836.jpg",
+        "w": 720,
+        "h": 1565,
+        "alt": "Screenshot: The Washington Post. Headline: New estrogen research may change how scientists think about women's aging brains",
+        "record": {
+          "source": "The Washington Post",
+          "format": "Apple News article",
+          "byline": "byline not visible",
+          "published": "Nov 5, 2026, 5:00 am",
+          "captured": "2026-11-08"
+        }
       }
     ]
   },
@@ -1391,24 +1749,9 @@ const grids = [
   },
   {
     "id": "g03",
-    "title": "One drug class, three tellers",
-    "caption": "Three captures about GLP-1 drugs, and they don't share one fact. A newspaper reports patients suing over vision loss. A pharmacy's injections are recalled nationwide. An opinion column calls the side effects revolutionary. The drug class is the only thread, so each stays isolated. Together they tell the product as lawsuit, recall and promise.",
+    "title": "One drug class, two tellers",
+    "caption": "Two captures about GLP-1 drugs, and they don't share one fact. A pharmacy's injections are recalled nationwide. An opinion column calls the side effects revolutionary. The drug class is the only thread, so each stays isolated. Together they tell the product as recall and promise.",
     "items": [
-      {
-        "id": "IMG_1071",
-        "date": "2026-09-25",
-        "image": "images/IMG_1071.jpg",
-        "w": 720,
-        "h": 1565,
-        "alt": "Screenshot: The Wall Street Journal. Headline: Patients Sue GLP-1 Drugmakers Over Risk of Sudden Vision Loss",
-        "record": {
-          "source": "The Wall Street Journal",
-          "format": "Apple News article",
-          "byline": "Alex Janin",
-          "published": "Sep 18, 2026, 8:00 pm EDT",
-          "captured": "2026-09-25 02:17"
-        }
-      },
       {
         "id": "IMG_1607",
         "date": "2026-10-22",
@@ -1677,6 +2020,42 @@ const crops = [
       }
     ],
     "annotation": "“Just found it.” Published almost eight weeks before it reached me."
+  },
+  {
+    "id": "IMG_0004",
+    "date": "2026-11-09",
+    "image": "images/IMG_0004.jpg",
+    "w": 720,
+    "h": 1240,
+    "alt": "Screenshot: The Scientific Report. Headline: Infant bleeding episodes jump in the United States as parents refuse vitamin K shots at birth",
+    "record": {
+      "source": "The Scientific Report",
+      "format": "Facebook post",
+      "byline": "not visible",
+      "published": "posted 1 day before capture",
+      "captured": "2026-11-09"
+    },
+    "redaction": "Covered the top strip, which shows blurred remnants of the previous post's reaction buttons.",
+    "boxes": [
+      {
+        "x0": 2,
+        "y0": 16.4,
+        "x1": 98,
+        "y1": 19.4,
+        "label": "Post text",
+        "detail": "images/IMG_0004-detail1.jpg"
+      },
+      {
+        "x0": 4,
+        "y0": 73.5,
+        "x1": 96,
+        "y1": 85.7,
+        "label": "Graphic",
+        "detail": "images/IMG_0004-detail2.jpg"
+      }
+    ],
+    "annotation": "The post text cuts off at “a problem medicine solv…” and the graphic blames parents who refuse the shot. Neither names a study.",
+    "watch": "Studies exist (see Gaps). The post doesn't cite them."
   }
 ];
 
@@ -2030,7 +2409,7 @@ const isolatedCaptures = [
     "date": "2026-09-22",
     "image": "images/IMG_1017.jpg",
     "w": 720,
-    "h": 1565,
+    "h": 859,
     "alt": "Screenshot: drmaryclaire, resharing USA Today. Headline: Exclusive: FDA warnings persisted as UTIs turned deadly in menopause",
     "record": {
       "source": "drmaryclaire, resharing USA Today",
@@ -2209,23 +2588,168 @@ const isolatedCaptures = [
     }
   },
   {
-    "id": "IMG_1467",
-    "date": "2026-10-13",
-    "image": "images/IMG_1467.jpg",
+    "id": "IMG_1674",
+    "date": "2026-10-26",
+    "image": "images/IMG_1674.jpg",
+    "w": 720,
+    "h": 1095,
+    "alt": "Screenshot: WECT News. Headline: 2-year-old suffers catastrophic brain injury after exposure to 7-OH",
+    "record": {
+      "source": "WECT News",
+      "format": "Facebook post (link to wect.com)",
+      "byline": "not visible",
+      "published": "Oct 26, 2026 (from the link), posted 32 minutes before capture",
+      "captured": "2026-10-26 16:28"
+    },
+    "redaction": "Covered the comment box, which shows my own Facebook name and account photo.",
+    "words": {
+      "text": "7-OH goes unexplained in the headline.",
+      "x": 5,
+      "y": 12
+    }
+  },
+  {
+    "id": "IMG_1707",
+    "date": "2026-10-29",
+    "image": "images/IMG_1707.jpg",
     "w": 720,
     "h": 1565,
-    "alt": "Screenshot: The Guardian. Headline: New York governor declares state of emergency after spike in measles cases",
+    "alt": "Screenshot: The Economist. Headline: ADHD should not be treated as a disorder",
     "record": {
-      "source": "The Guardian",
-      "format": "Web article (theguardian.com)",
-      "byline": "Adam Gabbatt",
-      "published": "Tue 6 Oct 2026, 09:17 EDT",
-      "captured": "2026-10-13 20:55"
+      "source": "The Economist",
+      "format": "Facebook ad",
+      "byline": "not visible",
+      "published": "Ad, no date",
+      "captured": "2026-10-29 22:50"
+    },
+    "redaction": "Covered the comment box, which shows my own Facebook name.",
+    "words": {
+      "text": "An ad says the science has changed.",
+      "x": 5,
+      "y": 52
+    }
+  },
+  {
+    "id": "IMG_1709",
+    "date": "2026-10-30",
+    "image": "images/IMG_1709.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: The Atlantic. Headline: Doctors say a rare kind of measles is on the rise",
+    "record": {
+      "source": "The Atlantic",
+      "format": "Apple News article",
+      "byline": "Cecilia Nowell",
+      "published": "Oct 30, 2026, 7 am ET",
+      "captured": "2026-10-30 12:31"
     },
     "words": {
-      "text": "Emergency declared after the measles spike.",
+      "text": "Rare, the headline says. Rising, it also says.",
       "x": 5,
-      "y": 25
+      "y": 66
+    },
+    "watch": "Chain candidate for c01 (measles, babies). Topic only so far."
+  },
+  {
+    "id": "IMG_1754",
+    "date": "2026-11-03",
+    "image": "images/IMG_1754.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: The Washington Post. Headline: A landmark study was flawed. Now my mother is losing her memory.",
+    "record": {
+      "source": "The Washington Post",
+      "format": "Apple News article, opinion",
+      "byline": "byline not visible",
+      "published": "Nov 3, 2026, 9:54 am",
+      "captured": "2026-11-03 15:02"
+    },
+    "words": {
+      "text": "A flawed study, told through one mother.",
+      "x": 5,
+      "y": 53
+    }
+  },
+  {
+    "id": "IMG_1755",
+    "date": "2026-11-03",
+    "image": "images/IMG_1755.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: Entertainment Weekly. Headline: Eric Dane tried to 'shake' off this early ALS symptom before diagnosis",
+    "record": {
+      "source": "Entertainment Weekly",
+      "format": "Apple News article",
+      "byline": "Raechal Shewfelt",
+      "published": "Updated Oct 29, 2026",
+      "captured": "2026-11-03 15:03"
+    },
+    "words": {
+      "text": "The symptom he ignored is the headline.",
+      "x": 5,
+      "y": 54
+    },
+    "watch": "Boundary. A celebrity's illness story."
+  },
+  {
+    "id": "IMG_1774",
+    "date": "2026-11-04",
+    "image": "images/IMG_1774.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: BBC Wildlife. Headline: How much microplastic is actually in our bodies?",
+    "record": {
+      "source": "BBC Wildlife",
+      "format": "Apple News article",
+      "byline": "James Fair",
+      "published": "Nov 4, 2026",
+      "captured": "2026-11-04 13:05"
+    },
+    "redaction": "Covered an Apple News \"Continue Reading\" banner. It's a different story (the Eric Dane article in IMG_1755) and it slid over this one.",
+    "words": {
+      "text": "Filed under environment. Told through organs.",
+      "x": 5,
+      "y": 70
+    }
+  },
+  {
+    "id": "IMG_1835",
+    "date": "2026-11-08",
+    "image": "images/IMG_1835.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: NPR. Headline: This woman defied lethal cancer. Can mRNA vaccines make that possible for others?",
+    "record": {
+      "source": "NPR",
+      "format": "Apple News article",
+      "byline": "Yuki Noguchi",
+      "published": "Nov 2, 2026, 4:31 pm EST",
+      "captured": "2026-11-08"
+    },
+    "words": {
+      "text": "A woman's survival carries the question.",
+      "x": 5,
+      "y": 70
+    }
+  },
+  {
+    "id": "IMG_1837",
+    "date": "2026-11-08",
+    "image": "images/IMG_1837.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: Popular Science. Headline: PFAS are toxic and they're everywhere. Here's how to stay away from them.",
+    "record": {
+      "source": "Popular Science",
+      "format": "Apple News article",
+      "byline": "Sofia Quaglia",
+      "published": "not visible",
+      "captured": "2026-11-08"
+    },
+    "words": {
+      "text": "A threat for everyone. Homework for you.",
+      "x": 5,
+      "y": 52
     }
   }
 ];
@@ -2262,6 +2786,22 @@ const outOfScope = [
       "captured": "2026-10-13 20:54"
     },
     "caption": "Policy news about who keeps coverage. Filed below the line, on purpose."
+  },
+  {
+    "id": "IMG_1704",
+    "date": "2026-10-29",
+    "image": "images/IMG_1704.jpg",
+    "w": 720,
+    "h": 1565,
+    "alt": "Screenshot: The Atlantic. Headline: The Bones of Children's Mouths Are Being Wrenched Apart",
+    "record": {
+      "source": "The Atlantic",
+      "format": "Web article (theatlantic.com)",
+      "byline": "Daniel Engber",
+      "published": "Jan 9, 2026",
+      "captured": "2026-10-29 19:18"
+    },
+    "caption": "Dated January, captured in October. A claim about children's mouths, not an outbreak or an event. Filed below the line, on purpose."
   }
 ];
 

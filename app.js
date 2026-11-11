@@ -529,24 +529,81 @@
   }
 
   /* ---------- chain index, under the legend ---------- */
-  function buildIndex(sortedChains) {
+  function buildIndex(groups) {
     const slot = document.getElementById("chain-index");
-    if (!slot || !sortedChains.length) return;
+    const total = groups.reduce((n, g) => n + g.chains.length, 0);
+    if (!slot || !total) return;
     slot.innerHTML = "";
-    slot.appendChild(el("p", "block-label", `Chains · ${sortedChains.length}`));
-    const ol = el("ol", "chain-index-list");
-    sortedChains.forEach(c => {
-      const li = el("li", "ci-item ci-" + c.relationship);
-      li.dataset.rel = c.relationship;
-      const a = el("a");
-      a.href = "#chain-" + slug(c.title || c.items[0].id);
-      a.appendChild(el("span", "ci-mark"));
-      a.appendChild(el("span", "ci-title", c.title));
-      a.appendChild(el("span", "ci-count", String(c.items.length)));
-      li.appendChild(a);
-      ol.appendChild(li);
+    slot.appendChild(el("p", "block-label", `Chains · ${total}`));
+    const wrap = el("div", "chain-index-legs");
+    groups.forEach((g, gi) => {
+      if (!g.chains.length) return;
+      const col = el("div", "ci-leg");
+      col.dataset.leg = g.id;
+      const head = el("a", "ci-leg-name");
+      head.href = "#leg-" + g.id;
+      head.textContent = g.name ? `${gi + 1} · ${g.name}` : g.title;
+      col.appendChild(head);
+      const ol = el("ol", "chain-index-list");
+      g.chains.forEach(c => {
+        const li = el("li", "ci-item ci-" + c.relationship);
+        li.dataset.rel = c.relationship;
+        const a = el("a");
+        a.href = "#chain-" + slug(c.title || c.items[0].id);
+        a.appendChild(el("span", "ci-mark"));
+        a.appendChild(el("span", "ci-title", c.title));
+        a.appendChild(el("span", "ci-count", String(c.items.length)));
+        li.appendChild(a);
+        ol.appendChild(li);
+      });
+      col.appendChild(ol);
+      wrap.appendChild(col);
     });
-    slot.appendChild(ol);
+    slot.appendChild(wrap);
+  }
+
+  /* ---------- journey: legs, openers and off-ramps ---------- */
+  const JOURNEY = typeof journey !== "undefined" ? journey : null;
+
+  // Splits chains into legs in journey order. Anything not listed goes to "unplaced".
+  function groupChains(C) {
+    const byTitle = new Map(C.map(c => [c.title, c]));
+    const used = new Set();
+    const groups = [];
+    if (JOURNEY) {
+      JOURNEY.legs.forEach(leg => {
+        const chains = leg.chains.map(t => byTitle.get(t)).filter(Boolean);
+        chains.forEach(c => used.add(c));
+        groups.push({ id: leg.id, name: leg.name, title: leg.title, opener: leg.opener, chains });
+      });
+    }
+    const rest = C.filter(c => !used.has(c)).sort((a, b) => chainStartDate(b).localeCompare(chainStartDate(a)));
+    if (rest.length) {
+      const u = (JOURNEY && JOURNEY.unplaced) || {};
+      groups.push({ id: "unplaced", name: null, title: JOURNEY ? (u.title || "Not placed in a leg yet") : null, opener: u.note ? [u.note] : null, chains: rest, unplaced: true });
+    }
+    return groups;
+  }
+
+  function buildLegIntro(g, n, total) {
+    const s = el("section", "leg-intro" + (g.unplaced ? " is-unplaced" : ""));
+    s.id = "leg-" + g.id;
+    s.dataset.leg = g.id;
+    if (g.name) s.appendChild(el("p", "leg-label", `Leg ${n} of ${total} · ${g.name}`));
+    if (g.title) s.appendChild(el("h2", "leg-title", g.title));
+    (g.opener || []).forEach(p => s.appendChild(el("p", "leg-opener", p)));
+    return s;
+  }
+
+  function buildOffRamp(g, isLast) {
+    const r = (JOURNEY && (isLast && JOURNEY.offRampLast ? JOURNEY.offRampLast : JOURNEY.offRamp)) || {};
+    const d = el("div", "off-ramp");
+    d.dataset.leg = g.id;
+    const a = el("a", "off-ramp-link", r.link || "Take me to the last stop");
+    a.href = "#last-stop";
+    d.appendChild(a);
+    if (r.note) d.appendChild(el("p", "off-ramp-note", r.note));
+    return d;
   }
 
   /* ---------- filters: the legend tags are buttons ---------- */
@@ -563,7 +620,13 @@
     document.querySelectorAll("#log .chain").forEach(s => show(s, !f || FILTER_MATCH[f](s.dataset.rel)));
     document.querySelectorAll("#chain-index .ci-item").forEach(s => show(s, !f || FILTER_MATCH[f](s.dataset.rel)));
     show(document.querySelector("#log .isolated-section"), !f || f === "isolated");
-    document.querySelectorAll("#log .sequence-block, #log .out-section, #log .last-stop").forEach(s => show(s, !f));
+    document.querySelectorAll("#log .sequence-block, #log .out-section, #log .last-stop, #log .off-ramp").forEach(s => show(s, !f));
+    // a leg's opener shows only while at least one of its chains is showing
+    document.querySelectorAll("#log .leg-intro").forEach(s => {
+      const any = [...document.querySelectorAll(`#log .chain[data-leg="${s.dataset.leg}"]`)].some(c => !c.hidden);
+      show(s, any);
+    });
+    document.querySelectorAll("#chain-index .ci-leg").forEach(col => show(col, [...col.querySelectorAll(".ci-item")].some(i => !i.hidden)));
     document.querySelectorAll(".legend [data-filter]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.filter === f)));
     const status = document.getElementById("filter-status");
     if (status) {
@@ -624,6 +687,7 @@
 
   function buildLastStop(all, C) {
     const sec = el("section", "last-stop");
+    sec.id = "last-stop";
     sec.appendChild(el("h2", null, "The last stop"));
     sec.appendChild(el("p", "isolated-note",
       `Every chain on this log ends with me. Each version here is the one that reached me, one reader${READER.place ? " in the " + READER.place : ""}. Here's how all ${all.length} captures got to me.`));
@@ -671,6 +735,13 @@
       sec.appendChild(stats);
       sec.appendChild(el("p", "isolated-note", "I count each delay from the publish or update time on the capture to the moment I took the screenshot. If a capture only shows a date, or a stamp like “1d,” I left it out of the clock-time numbers."));
     }
+    const E = JOURNEY && JOURNEY.ending;
+    if (E) {
+      const box = el("div", "stop-ending");
+      if (E.title) box.appendChild(el("h3", "stop-ending-title", E.title));
+      (E.text || []).forEach(t => box.appendChild(el("p", null, t)));
+      sec.appendChild(box);
+    }
     return sec;
   }
 
@@ -693,9 +764,19 @@
       return;
     }
 
-    const sortedChains = C.slice().sort((a, b) => chainStartDate(b).localeCompare(chainStartDate(a)));
-    sortedChains.forEach(c => log.appendChild(buildChainSection(c)));
-    buildIndex(sortedChains);
+    const groups = groupChains(C);
+    const legCount = groups.filter(g => !g.unplaced).length;
+    groups.forEach((g, gi) => {
+      if (!g.chains.length) return;
+      if (JOURNEY) log.appendChild(buildLegIntro(g, gi + 1, legCount));
+      g.chains.forEach(c => {
+        const sec = buildChainSection(c);
+        sec.dataset.leg = g.id;
+        log.appendChild(sec);
+      });
+      if (JOURNEY && !g.unplaced) log.appendChild(buildOffRamp(g, gi === legCount - 1));
+    });
+    buildIndex(groups);
     S.forEach(s => log.appendChild(buildSequence(s)));
 
     if (G.length || X.length || I.length) {

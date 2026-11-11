@@ -809,3 +809,61 @@ dialog.compare::backdrop { background: rgba(10, 10, 14, 0.82); }
   .stop-stats dd { margin-bottom: 0.6rem; }
   .last-stop { padding: 1.5rem 1rem; }
 }
+
+/* ============================================================
+   JOURNEY (Nov 2026)
+   Legs with openers, an off-ramp after each leg, and an ending
+   that steps off the feed.
+   ============================================================ */
+
+/* index grouped by leg */
+.chain-index-legs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem 1.5rem; }
+.ci-leg { display: flex; flex-direction: column; }
+.ci-leg-name {
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink); text-decoration: none; padding-bottom: 0.35rem; margin-bottom: 0.1rem; border-bottom: 1px solid var(--muted-ink);
+}
+.ci-leg-name:hover { color: var(--rel-revised); }
+.ci-leg .chain-index-list { display: flex; flex-direction: column; }
+
+/* leg opener */
+.leg-intro { margin: 1rem 0 2.25rem; padding: 2.5rem 0 0; scroll-margin-top: 4rem; }
+.leg-intro + .chain { margin-top: 0; }
+#log > .leg-intro:first-child { padding-top: 0.5rem; }
+.leg-label {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted-ink); margin: 0 0 0.6rem;
+}
+.leg-label::before { content: "// "; color: var(--rel-revised); }
+.leg-title { font-family: var(--mono); font-size: 1.6rem; font-weight: 700; line-height: 1.25; margin: 0 0 1rem; color: var(--ink); max-width: 30ch; }
+.leg-opener { font-size: 1.02rem; color: var(--ink); max-width: 62ch; margin: 0 0 0.85rem; }
+.leg-opener:last-child { margin-bottom: 0; }
+.leg-intro.is-unplaced .leg-title { font-size: 1.1rem; color: var(--muted-ink); }
+.leg-intro.is-unplaced .leg-opener { color: var(--muted-ink); font-size: 0.9rem; }
+
+/* off-ramp */
+.off-ramp {
+  margin: -1rem 0 3.5rem; padding: 1.25rem 0 0;
+  border-top: 1px dashed var(--line);
+  display: flex; flex-direction: column; align-items: flex-end; gap: 0.3rem; text-align: right;
+}
+.off-ramp-link {
+  font-family: var(--mono); font-size: 0.82rem; color: var(--rel-revised);
+  text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 0.1rem;
+}
+.off-ramp-link::after { content: " ↘"; }
+.off-ramp-link:hover { color: var(--ink); }
+.off-ramp-note { font-family: var(--mono); font-size: 0.68rem; color: var(--muted-ink); margin: 0; }
+
+/* the ending: off the feed */
+.last-stop { scroll-margin-top: 4rem; }
+.stop-ending { margin-top: 2rem; padding-top: 1.75rem; border-top: 1px solid var(--line); }
+.stop-ending-title { font-family: var(--mono); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 1rem; color: var(--ink); }
+.stop-ending p { font-size: 1.02rem; color: var(--ink); max-width: 62ch; margin: 0 0 0.9rem; }
+.stop-ending p:first-of-type { font-family: var(--mono); font-size: 1.05rem; }
+.stop-ending p:last-child { margin-bottom: 0; }
+
+@media (max-width: 640px) {
+  .leg-title { font-size: 1.3rem; }
+  .off-ramp { align-items: flex-start; text-align: left; }
+}

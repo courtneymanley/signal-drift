@@ -70,6 +70,23 @@ const arrival = {
   "IMG_1201": { pub: "2026-09-15T16:42", basis: "published" },
   "IMG_1200": { pub: "2026-09-24", basis: "date" },
 
+  // New York's first measles death in 30 years
+  "IMG_1467": { pub: "2026-10-06T09:17", basis: "published" },
+  "IMG_1756": { basis: "stamp", stamp: "18h" },
+  "IMG_1827": { basis: "stamp", stamp: "3h" },
+
+  // GLP-1 drugs and sudden vision loss
+  "IMG_1071": { pub: "2026-09-18T20:00", basis: "published" },
+  "IMG_0017": { basis: "stamp", stamp: "4h ago" },
+
+  // Medscape's long-ignored syndrome
+  "IMG_1706": { pub: "2026-10-29", basis: "date" },
+  "IMG_0003": { basis: "stamp", stamp: "11h" },
+
+  // Measles, the national count
+  "IMG_1833": { pub: "2026-11-05", basis: "updated" },
+  "IMG_1838": { pub: "2026-11-07", basis: "date" },
+
   // Mayim Bialik and GLP-1, one article
   "IMG_0821": { pub: "2026-09-10", basis: "updated" },
   "IMG_1608": { pub: "2026-10-21", basis: "updated" }
